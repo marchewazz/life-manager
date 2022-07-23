@@ -1,0 +1,18 @@
+<div>
+    <div class="grid grid-flow-col">
+        <button (click)="tab='login'">
+            Login
+        </button>
+        <button (click)="tab='register'">
+            Register
+        </button>
+    </div>
+    <div>
+        <ng-container *ngIf="tab=='login'">
+            <app-login-form></app-login-form>
+        </ng-container>
+        <ng-container *ngIf="tab=='register'">
+            <app-register-form></app-register-form>
+        </ng-container>
+    </div>
+</div>

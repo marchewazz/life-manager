@@ -1,0 +1,21 @@
+<div>
+    <form>
+        <input type="text" 
+        placeholder="name"
+        [formControl]="nameControl">
+        <input type="text" 
+        placeholder="email"
+        [formControl]="emailControl">
+        <input type="password" 
+        placeholder="pass"
+        [formControl]="passwordControl">
+        <input type="password" 
+        placeholder="repeat pass"
+        [formControl]="reapatedPasswordControl">
+    </form>
+    <button (click)="registerUser()">
+        send
+    </button>
+
+    {{ info }}
+</div>
