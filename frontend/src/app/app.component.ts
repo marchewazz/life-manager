@@ -13,6 +13,11 @@ export class AppComponent {
 
   isLogged: boolean = false;
 
-  constructor() { }
+  constructor() { 
+    setInterval(() => {
+      if (localStorage.getItem("token")) this.isLogged = true;
+      else this.isLogged = false
+    } ,1)
+  }
 }
 

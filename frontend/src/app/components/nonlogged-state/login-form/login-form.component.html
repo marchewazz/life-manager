@@ -1,1 +1,15 @@
-<p>login-form works!</p>
+<div>
+    <form>
+        <input type="text" 
+        placeholder="email"
+        [formControl]="emailControl">
+        <input type="password" 
+        placeholder="pass"
+        [formControl]="passwordControl">
+    </form>
+    <button (click)="loginUser()">
+        send
+    </button>
+
+    {{ info }}
+</div>

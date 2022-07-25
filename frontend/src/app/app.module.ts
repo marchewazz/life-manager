@@ -10,6 +10,7 @@ import { NonloggedStateComponent } from './components/nonlogged-state/nonlogged-
 import { LoggedStateComponent } from './components/logged-state/logged-state.component';
 import { LoginFormComponent } from './components/nonlogged-state/login-form/login-form.component';
 import { RegisterFormComponent } from './components/nonlogged-state/register-form/register-form.component';
+import { ProfileDashboardComponent } from './components/logged-state/profile-dashboard/profile-dashboard.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -19,7 +20,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     NonloggedStateComponent,
     LoggedStateComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ProfileDashboardComponent
   ],
   imports: [
     BrowserModule,
