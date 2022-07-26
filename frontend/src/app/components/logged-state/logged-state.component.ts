@@ -11,6 +11,8 @@ export class LoggedStateComponent implements OnInit {
 
   userData: any = {};
 
+  tab: string = "calendar";
+
   constructor(private as: AuthService) { }
 
   ngOnInit(){ 
