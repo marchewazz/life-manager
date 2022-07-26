@@ -1,1 +1,34 @@
-<p>calendar-dashboard works!</p>
+<div>
+    <div>
+        <form>
+            <select
+            (change)="getNumberOfDays()"
+            [formControl]="monthsControl">
+                <option *ngFor="let month of monthsNames; let i = index"
+                [value]="i+1">
+                    {{ month }}
+                </option>
+            </select>
+            <select
+            (change)="getNumberOfDays()"
+            [formControl]="yearsControl">
+                <option *ngFor="let year of years"
+                [value]="year">
+                    {{ year }}
+                </option>
+            </select>
+        </form>
+    </div>
+    <div>
+        <ng-container *ngFor="let day of days">
+            <div>
+                <input type="radio" 
+                name="day"
+                [value]="day.getDate().toString()"
+                [formControl]="daysControl">
+                {{ day.getDate() }}
+                {{ daysNames[day.getDay()] }}
+            </div>
+        </ng-container>
+    </div>
+</div>
