@@ -2,7 +2,7 @@
     <div>
         <form>
             <select
-            (change)="getNumberOfDays()"
+            (change)="getNumberOfDays(); getEventsOnSelectedDay()"
             [formControl]="monthsControl">
                 <option *ngFor="let month of monthsNames; let i = index"
                 [value]="i+1">
@@ -10,7 +10,7 @@
                 </option>
             </select>
             <select
-            (change)="getNumberOfDays()"
+            (change)="getNumberOfDays(); getEventsOnSelectedDay()"
             [formControl]="yearsControl">
                 <option *ngFor="let year of years"
                 [value]="year">
@@ -24,11 +24,29 @@
             <div>
                 <input type="radio" 
                 name="day"
+                (change)="getEventsOnSelectedDay()"
                 [value]="day.getDate().toString()"
                 [formControl]="daysControl">
                 {{ day.getDate() }}
                 {{ daysNames[day.getDay()] }}
             </div>
         </ng-container>
+    </div>
+    <div>
+        <div>
+            FORM TO ADD
+        </div>
+        <div>
+            <ng-container *ngIf="!eventsOnSelectedDay.length">
+                <p>
+                    Nothing saved on this day
+                </p>
+            </ng-container>
+            <ng-container *ngIf="eventsOnSelectedDay.length">
+                <div *ngFor="let date of eventsOnSelectedDay">
+                    {{date.title}}
+                </div>
+            </ng-container>
+        </div>
     </div>
 </div>
