@@ -24,7 +24,7 @@ export class MoneyDashboardComponent implements OnInit {
 
   sendBalance(): void {
     this.ms.updateBalance({"userID": this.userData._id, "token": localStorage.getItem("token"), "newBalance": this.balanceControl.value});
-    this.balanceControl.setValue(this.userData.balance.toString());
+    this.balanceControl.setValue(this.balanceControl.value);
     this.editBalance = false;
   }
 

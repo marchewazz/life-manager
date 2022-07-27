@@ -42,7 +42,7 @@ io.on("connection", (socket: any) => {
   })
   socket.on("updateBalance", async (data: any) => {
     await mc.updateBalance(data)
-    await socket.emit("userData", await ac.getUserData(data.token))
+    socket.emit("userData", await ac.getUserData(data.token))
   })
 })
 
