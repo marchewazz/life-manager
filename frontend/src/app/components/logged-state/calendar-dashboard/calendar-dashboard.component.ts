@@ -13,7 +13,7 @@ export class CalendarDashboardComponent implements OnInit {
   @Input() userData: any = {};
   
   daysControl: FormControl = new FormControl(new Date().getDate().toString());
-  monthsControl: FormControl = new FormControl(new Date().getMonth().toString());
+  monthsControl: FormControl = new FormControl((new Date().getMonth() + 1).toString());
   yearsControl: FormControl = new FormControl(new Date().getFullYear().toString());
 
   monthsNames: string[] = monthsNames;

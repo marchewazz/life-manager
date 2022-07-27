@@ -13,4 +13,8 @@ export class MoneyService {
     this.socket.emit("updateBalance", balance)
   }
 
+  saveOperation(operation: any) {
+    this.socket.emit("saveOperation", operation)
+  }
+
 }

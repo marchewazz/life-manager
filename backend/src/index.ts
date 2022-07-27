@@ -44,6 +44,10 @@ io.on("connection", (socket: any) => {
     await mc.updateBalance(data)
     socket.emit("userData", await ac.getUserData(data.token))
   })
+  socket.on("saveOperation",async (data: any) => {
+    await mc.saveOperation(data)
+    socket.emit("userData", await ac.getUserData(data.token))
+  })
 })
 
 http.listen(port, () => {
