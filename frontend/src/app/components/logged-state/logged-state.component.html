@@ -6,6 +6,9 @@
         <button (click)="tab='notes'">
             Notes
         </button>
+        <button (click)="tab='money'">
+            Money
+        </button>
         <button (click)="tab='profile'">
             Profile
         </button>
@@ -16,6 +19,9 @@
         </ng-container>
         <ng-container *ngIf="tab=='notes'">
             <app-notes-dashboard [userData]="userData"></app-notes-dashboard>
+        </ng-container>
+        <ng-container *ngIf="tab=='money'">
+            <app-money-dashboard [userData]="userData"></app-money-dashboard>
         </ng-container>
         <ng-container *ngIf="tab=='profile'">
             <app-profile-dashboard [userData]="userData"></app-profile-dashboard>

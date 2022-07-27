@@ -8,6 +8,7 @@ import accountsRouter from './routers/AccountsRouter';
 
 import AuthController from './controllers/AuthController';
 import NotesController from './controllers/NotesController';
+import MoneyController from './controllers/MoneyController';
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,7 @@ app.use("/accounts", accountsRouter);
 io.on("connection", (socket: any) => {
   const ac = new AuthController();
   const nc = new NotesController();
+  const mc = new MoneyController();
 
   socket.on("userData", async (data: any) => {
     socket.emit("userData", await ac.getUserData(data.token))
@@ -37,6 +39,10 @@ io.on("connection", (socket: any) => {
   socket.on("deleteNote",async (data: any) => {
     await nc.deleteNode(data)
     socket.emit("userData", await ac.getUserData(data.token))
+  })
+  socket.on("updateBalance", async (data: any) => {
+    await mc.updateBalance(data)
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
 })
 

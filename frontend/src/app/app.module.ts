@@ -13,6 +13,7 @@ import { RegisterFormComponent } from './components/nonlogged-state/register-for
 import { ProfileDashboardComponent } from './components/logged-state/profile-dashboard/profile-dashboard.component';
 import { CalendarDashboardComponent } from './components/logged-state/calendar-dashboard/calendar-dashboard.component';
 import { NotesDashboardComponent } from './components/logged-state/notes-dashboard/notes-dashboard.component';
+import { MoneyDashboardComponent } from './components/logged-state/money-dashboard/money-dashboard.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -25,7 +26,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     RegisterFormComponent,
     ProfileDashboardComponent,
     CalendarDashboardComponent,
-    NotesDashboardComponent
+    NotesDashboardComponent,
+    MoneyDashboardComponent
   ],
   imports: [
     BrowserModule,
