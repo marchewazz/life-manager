@@ -12,6 +12,7 @@ export class LoggedStateComponent implements OnInit {
   userData: any = {};
 
   tab: string = "calendar";
+  ready: boolean = false;
 
   constructor(private as: AuthService) { }
 
@@ -23,6 +24,7 @@ export class LoggedStateComponent implements OnInit {
     this.as.getUserData();
     this.as.onGetUserData().subscribe((res: any) => {
       this.userData = res.userData;
+      this.ready = true;
     })
   }
 }

@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="ready">
     <div class="grid grid-flow-col">
         <button (click)="tab='calendar'">
             Calendar
@@ -27,5 +27,7 @@
             <app-profile-dashboard [userData]="userData"></app-profile-dashboard>
         </ng-container>
     </div>
-    
+</div>
+<div *ngIf="!ready">
+    Loading...
 </div>
