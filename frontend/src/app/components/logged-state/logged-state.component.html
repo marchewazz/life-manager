@@ -3,6 +3,9 @@
         <button (click)="tab='calendar'">
             Calendar
         </button>
+        <button (click)="tab='dates'">
+            Dates
+        </button>
         <button (click)="tab='notes'">
             Notes
         </button>
@@ -16,6 +19,9 @@
     <div>
         <ng-container *ngIf="tab=='calendar'">
             <app-calendar-dashboard [userData]="userData"></app-calendar-dashboard>
+        </ng-container>
+        <ng-container *ngIf="tab=='dates'">
+            <app-dates-dashboard [userData]="userData"></app-dates-dashboard>
         </ng-container>
         <ng-container *ngIf="tab=='notes'">
             <app-notes-dashboard [userData]="userData"></app-notes-dashboard>

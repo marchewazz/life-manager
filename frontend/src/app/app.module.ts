@@ -14,6 +14,9 @@ import { ProfileDashboardComponent } from './components/logged-state/profile-das
 import { CalendarDashboardComponent } from './components/logged-state/calendar-dashboard/calendar-dashboard.component';
 import { NotesDashboardComponent } from './components/logged-state/notes-dashboard/notes-dashboard.component';
 import { MoneyDashboardComponent } from './components/logged-state/money-dashboard/money-dashboard.component';
+import { DatesDashboardComponent } from './components/logged-state/dates-dashboard/dates-dashboard.component';
+import { MoneyFormComponent } from './components/logged-state/money-dashboard/money-form/money-form.component';
+import { DatesFormComponent } from './components/logged-state/dates-dashboard/dates-form/dates-form.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -27,7 +30,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ProfileDashboardComponent,
     CalendarDashboardComponent,
     NotesDashboardComponent,
-    MoneyDashboardComponent
+    MoneyDashboardComponent,
+    DatesDashboardComponent,
+    MoneyFormComponent,
+    DatesFormComponent
   ],
   imports: [
     BrowserModule,

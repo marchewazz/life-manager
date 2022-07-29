@@ -1,0 +1,17 @@
+<div>
+    <div>
+        <ng-container *ngIf="!userData.dates.dates.length">
+            <p>
+                No dates saved
+            </p>
+        </ng-container>
+        <ng-container *ngIf="userData.dates.dates.length">
+            <div *ngFor="let date of userData.dates.dates">
+                {{ date.title }}
+                {{ date.description }}
+                {{ date.dateTime }}
+            </div>
+        </ng-container>
+    </div>
+    <app-dates-form [userData]="userData"></app-dates-form>
+</div>
