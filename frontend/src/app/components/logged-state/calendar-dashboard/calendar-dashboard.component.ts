@@ -25,15 +25,17 @@ export class CalendarDashboardComponent implements OnInit {
   formTabControl: FormControl = new FormControl(this.formTabs[0]);
 
   selectedDate: Date = new Date(this.yearsControl.value, this.monthsControl.value - 1, this.daysControl.value);
+  isDateLater: boolean = false;
+  estimatedBalance: number = this.userData.balance;
   eventsOnSelectedDay: any[] = [];
 
   constructor() {
     for(let i = 2010; i<= 2024; i++) this.years.push(i.toString())
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {        
     this.getNumberOfDays();
-    this.getEventsOnSelectedDay();
+    this.onChangeDate()
   }
 
   getNumberOfDays(): void {
@@ -57,8 +59,26 @@ export class CalendarDashboardComponent implements OnInit {
         }
       }
     }
-    console.log(this.userData);
-    
+  }
+
+  onChangeDate(): void {
+    this.getEventsOnSelectedDay();
+    this.isDateLater = this.selectedDate > new Date();
+    if (this.isDateLater) {
+      this.estimatedBalance = this.userData.balance;
+      let moneyOperationToSelectedDate = [];
+      for (const operation of this.userData.dates.money) {
+        if (operation.dateTime) {
+          const operationDate = new Date(new Date(operation.dateTime).getFullYear(), new Date(operation.dateTime).getMonth(), new Date(operation.dateTime).getDate());
+          if (operationDate <= this.selectedDate && operationDate >= new Date()) moneyOperationToSelectedDate.push(operation)
+        }        
+      }
+      for (const operation of moneyOperationToSelectedDate) {
+        if (operation.direction == "ingoing") this.estimatedBalance = this.estimatedBalance + parseFloat(operation.amount)
+        if (operation.direction == "outgoing") this.estimatedBalance = this.estimatedBalance - parseFloat(operation.amount)
+      }
+      this.estimatedBalance = parseFloat(this.estimatedBalance.toFixed(2))
+    }
   }
 
 }

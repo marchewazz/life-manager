@@ -2,7 +2,7 @@
     <div>
         <form>
             <select
-            (change)="getNumberOfDays(); getEventsOnSelectedDay()"
+            (change)="getNumberOfDays(); onChangeDate()"
             [formControl]="monthsControl">
                 <option *ngFor="let month of monthsNames; let i = index"
                 [value]="i+1">
@@ -10,7 +10,7 @@
                 </option>
             </select>
             <select
-            (change)="getNumberOfDays(); getEventsOnSelectedDay()"
+            (change)="getNumberOfDays(); onChangeDate()"
             [formControl]="yearsControl">
                 <option *ngFor="let year of years"
                 [value]="year">
@@ -24,7 +24,7 @@
             <div>
                 <input type="radio" 
                 name="day"
-                (change)="getEventsOnSelectedDay()"
+                (change)="onChangeDate()"
                 [value]="day.getDate().toString()"
                 [formControl]="daysControl">
                 {{ day.getDate() }}
@@ -55,6 +55,16 @@
             </ng-container>
         </div>
         <div>
+            <ng-container *ngIf="isDateLater">
+                <p>
+                    Predicted balance:
+                    <span
+                    [ngClass]="{'text-red-700': estimatedBalance < userData.balance, 'text-green-700': estimatedBalance > userData.balance}">
+                        {{ estimatedBalance }} $
+                    </span>
+                    
+                </p>
+            </ng-container>
             <ng-container *ngIf="!eventsOnSelectedDay.length">
                 <p>
                     Nothing saved on this day
