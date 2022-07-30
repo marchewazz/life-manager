@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { DatesService } from 'src/app/services/datesService/dates.service';
-import { getNowDateTime } from 'src/app/utilities';
+import { getDateTime } from 'src/app/utilities';
 
 @Component({
   selector: 'app-dates-form',
@@ -12,16 +12,15 @@ import { getNowDateTime } from 'src/app/utilities';
 export class DatesFormComponent implements OnInit {
 
   @Input() userData: any = {};
+  @Input() selectedDate: any = new Date();
 
   titleControl: FormControl = new FormControl("");
   descriptionControl: FormControl = new FormControl("");
-  dateTimeControl: FormControl = new FormControl(getNowDateTime());
+  dateTimeControl: FormControl = new FormControl(getDateTime(this.selectedDate));
 
   constructor(private ds: DatesService) { }
 
-  ngOnInit(): void {
-    console.log(this.dateTimeControl.value.toString());
-  }
+  ngOnInit(): void { }
 
   saveDate(): void {
     if (!this.titleControl.value) {

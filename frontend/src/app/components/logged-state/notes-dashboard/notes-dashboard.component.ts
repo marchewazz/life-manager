@@ -21,24 +21,8 @@ export class NotesDashboardComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  sendNote(): void {
-    if (!this.titleControl.value && !this.descriptionControl.value) this.info = "You need to pass atleast one infomation"
-    else {
-      this.ns.sendNote({"userID": this.userData._id, "token": localStorage.getItem("token"), "title": this.titleControl.value, "description": this.descriptionControl.value})
-      this.clearForm();
-    }  
-    setTimeout(() => {
-      this.info = ""
-    }, 5000);
-  }
-
   deleteNote(noteID: string): void {
     this.ns.deleteNote({"userID": this.userData._id, "token": localStorage.getItem("token"), "noteID": noteID})
   }
-
-  clearForm(): void {
-    this.titleControl.setValue("");
-    this.descriptionControl.setValue("");
-  }
-
+  
 }

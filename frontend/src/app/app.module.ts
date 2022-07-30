@@ -17,6 +17,7 @@ import { MoneyDashboardComponent } from './components/logged-state/money-dashboa
 import { DatesDashboardComponent } from './components/logged-state/dates-dashboard/dates-dashboard.component';
 import { MoneyFormComponent } from './components/logged-state/money-dashboard/money-form/money-form.component';
 import { DatesFormComponent } from './components/logged-state/dates-dashboard/dates-form/dates-form.component';
+import { NotesFormComponent } from './components/logged-state/notes-dashboard/notes-form/notes-form.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -33,7 +34,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MoneyDashboardComponent,
     DatesDashboardComponent,
     MoneyFormComponent,
-    DatesFormComponent
+    DatesFormComponent,
+    NotesFormComponent
   ],
   imports: [
     BrowserModule,

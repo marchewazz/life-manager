@@ -34,7 +34,25 @@
     </div>
     <div>
         <div>
-            FORM TO ADD
+            <p>
+                ADD
+            </p>
+            <select
+            [formControl]="formTabControl">
+                <option *ngFor="let tab of formTabs"
+                [value]="tab">
+                    {{ tab.toUpperCase() }}
+                </option>
+            </select>
+            <ng-container *ngIf="formTabControl.value=='date'">
+                <app-dates-form [selectedDate]="selectedDate" [userData]="userData"></app-dates-form>
+            </ng-container>
+            <ng-container *ngIf="formTabControl.value=='money'">
+                <app-money-form [selectedDate]="selectedDate" [userData]="userData"></app-money-form>
+            </ng-container>
+            <ng-container *ngIf="formTabControl.value=='note'">
+                <app-notes-form [userData]="userData"></app-notes-form>
+            </ng-container>
         </div>
         <div>
             <ng-container *ngIf="!eventsOnSelectedDay.length">

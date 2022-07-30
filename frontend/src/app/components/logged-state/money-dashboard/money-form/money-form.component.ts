@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { MoneyService } from 'src/app/services/moneyService/money.service';
+import { getDateTime } from 'src/app/utilities';
 
 @Component({
   selector: 'app-money-form',
@@ -11,9 +12,10 @@ import { MoneyService } from 'src/app/services/moneyService/money.service';
 export class MoneyFormComponent implements OnInit {
 
   @Input() userData: any = {};
+  @Input() selectedDate: any = new Date();
 
   titleControl: FormControl = new FormControl("");
-  dateTimeControl: FormControl = new FormControl("");
+  dateTimeControl: FormControl = new FormControl(getDateTime(this.selectedDate));
   directionControl: FormControl = new FormControl("ingoing");
   secondSideControl: FormControl = new FormControl("");
   amountControl: FormControl = new FormControl("0.00");
@@ -23,7 +25,7 @@ export class MoneyFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveOperation(): void {
+  saveOperation(): void {    
     if(!this.titleControl.value || !this.amountControl.value) {
       console.log(`error`);
     } else {

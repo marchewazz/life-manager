@@ -21,6 +21,10 @@ export class CalendarDashboardComponent implements OnInit {
   years: string[] = [];
   days: Date[] = [];
 
+  formTabs: string[] = ["date", "money", "note"];
+  formTabControl: FormControl = new FormControl(this.formTabs[0]);
+
+  selectedDate: Date = new Date(this.yearsControl.value, this.monthsControl.value - 1, this.daysControl.value);
   eventsOnSelectedDay: any[] = [];
 
   constructor() {
@@ -41,18 +45,20 @@ export class CalendarDashboardComponent implements OnInit {
 
   getEventsOnSelectedDay(): void {
     this.eventsOnSelectedDay = [];
-    const selectedDay = new Date(this.yearsControl.value, this.monthsControl.value - 1, this.daysControl.value)
-    console.log(selectedDay);
+    this.selectedDate = new Date(this.yearsControl.value, this.monthsControl.value - 1, this.daysControl.value);
+    
     for(const section of Object.keys(this.userData.dates)) {
       for (const date of this.userData.dates[section]) {
         if (date.dateTime) {
           const dateTime = new Date(date.dateTime);
-          if (selectedDay.getFullYear() === dateTime.getFullYear() 
-            && selectedDay.getMonth() === dateTime.getMonth() 
-            && selectedDay.getDate() === dateTime.getDate()) this.eventsOnSelectedDay.push(date)
+          if (this.selectedDate.getFullYear() === dateTime.getFullYear() 
+            && this.selectedDate.getMonth() === dateTime.getMonth() 
+            && this.selectedDate.getDate() === dateTime.getDate()) this.eventsOnSelectedDay.push(date)
         }
       }
     }
+    console.log(this.userData);
+    
   }
 
 }
