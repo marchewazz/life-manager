@@ -10,4 +10,12 @@
     .tab-button {
         @apply grid place-items-center bg-light-blue peer-checked:bg-main-red peer-checked:text-light-gray
     }
+    .red-button {
+        @apply grid place-items-center text-white bg-red-700 border-2 border-black 
+        hover:bg-white hover:text-red-700
+    }
+    .green-button {
+        @apply grid place-items-center text-white bg-green-700 border-2 border-black 
+        hover:bg-white hover:text-green-700
+    }
 }

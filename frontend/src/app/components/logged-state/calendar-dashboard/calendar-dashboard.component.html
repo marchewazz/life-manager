@@ -21,7 +21,7 @@
                     </select>
                 </form>
             </div>
-            <div class="grid grid-cols-3 grid-flow-row place-items-stretch gap-y-3 gap-x-10">
+            <div class="grid grid-cols-5 grid-flow-row place-items-stretch gap-y-3 gap-x-10">
                 <ng-container *ngFor="let day of days">
                     <div class="grid palce-items-stretch">
                         <input type="radio"
@@ -46,16 +46,18 @@
         </div>
         <div class="grid grid-flow-row col-span-3">
             <div>
-                <p>
-                    ADD
-                </p>
-                <select
-                [formControl]="formTabControl">
-                    <option *ngFor="let tab of formTabs"
-                    [value]="tab">
-                        {{ tab.toUpperCase() }}
-                    </option>
-                </select>
+                <div class="grid grid-flow-col">
+                    <p class="grid place-items-center">
+                        ADD
+                    </p>
+                    <select
+                    [formControl]="formTabControl">
+                        <option *ngFor="let tab of formTabs"
+                        [value]="tab">
+                            {{ tab.toUpperCase() }}
+                        </option>
+                    </select>
+                </div>
                 <ng-container *ngIf="formTabControl.value=='date'">
                     <app-dates-form [selectedDate]="selectedDate" [userData]="userData"></app-dates-form>
                 </ng-container>

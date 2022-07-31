@@ -36,4 +36,10 @@ export class DatesFormComponent implements OnInit {
     }
   }
 
+  clearForm(): void {
+    this.titleControl.setValue("");
+    this.descriptionControl.setValue("");
+    this.dateTimeControl.setValue(getDateTime(this.selectedDate));
+  }
+
 }

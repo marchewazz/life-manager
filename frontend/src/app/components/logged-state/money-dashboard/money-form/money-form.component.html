@@ -1,4 +1,4 @@
-<div>
+<div class="grid grid-flow-row">
     <input type="text"
     placeholder="Title"
     [formControl]="titleControl">
@@ -25,23 +25,13 @@
         placeholder="To"
         [formControl]="secondSideControl">
     </ng-container>
-    <input type="text"
-    [formControl]="amountControl"> $
-    <div>
-        <button (click)="saveOperation()">
-            <svg xmlns="http://www.w3.org/2000/svg" 
-            class="h-6 w-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor" 
-            stroke-width="2">
-                <path stroke-linecap="round" 
-                stroke-linejoin="round" 
-                d="M5 13l4 4L19 7" 
-                />
-            </svg>
-        </button>
-        <button (click)="clearForm()">
+    <span>
+        <input type="text"
+        [formControl]="amountControl"> $
+    </span>
+    <div class="grid grid-flow-col place-items-center">
+        <button class="red-button px-14 py-4"
+        (click)="clearForm()">
             <svg xmlns="http://www.w3.org/2000/svg" 
             class="h-6 w-6" 
             fill="none" 
@@ -51,6 +41,20 @@
                 <path stroke-linecap="round" 
                 stroke-linejoin="round" 
                 d="M6 18L18 6M6 6l12 12" 
+                />
+            </svg>
+        </button>
+        <button class="green-button px-14 py-4" 
+        (click)="saveOperation()">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            stroke-width="2">
+                <path stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M5 13l4 4L19 7" 
                 />
             </svg>
         </button>
