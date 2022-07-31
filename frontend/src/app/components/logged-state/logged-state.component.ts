@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 
@@ -11,7 +12,8 @@ export class LoggedStateComponent implements OnInit {
 
   userData: any = {};
 
-  tab: string = "calendar";
+  tabs: string[] = ["calendar", "dates", "notes", "money", "profile"];
+  tabControl: FormControl = new FormControl(this.tabs[0])
   ready: boolean = false;
 
   constructor(private as: AuthService) { }

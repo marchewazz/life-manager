@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .calendar-button {
+        @apply grid border-2 border-main-red bg-light-blue text-dark-gray
+        peer-checked:border-dark-gray peer-checked:bg-main-red peer-checked:text-light-blue
+    }
+    .tab-button {
+        @apply grid place-items-center bg-light-blue peer-checked:bg-main-red peer-checked:text-light-gray
+    }
+}

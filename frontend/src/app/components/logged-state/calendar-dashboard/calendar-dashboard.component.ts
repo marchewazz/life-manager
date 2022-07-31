@@ -55,10 +55,14 @@ export class CalendarDashboardComponent implements OnInit {
           const dateTime = new Date(date.dateTime);
           if (this.selectedDate.getFullYear() === dateTime.getFullYear() 
             && this.selectedDate.getMonth() === dateTime.getMonth() 
-            && this.selectedDate.getDate() === dateTime.getDate()) this.eventsOnSelectedDay.push(date)
+            && this.selectedDate.getDate() === dateTime.getDate()) {
+              this.eventsOnSelectedDay.push(date)
+            }
         }
       }
     }
+    console.log(this.eventsOnSelectedDay);
+    
   }
 
   onChangeDate(): void {
