@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import MongoDBClient from "../utilities/MongoDBClient";
 
 class AuthController {
@@ -9,6 +10,19 @@ class AuthController {
         } else {
             return {"valid": true, "userData": accountsWithPassedEmail[0]}
         }
+    }
+
+    public async deleteToken(data: any) {
+        console.log(data);
+        
+        const collection = MongoDBClient.db("life-manager").collection("accounts");
+        console.log(await collection.find({"_id": data.userID}).toArray());
+        
+        await collection.updateMany({"_id": data.userID, "token": data.token}, {
+            $pull: {
+                "tokens.$.token": data.token 
+            }
+        })
     }
 }
 

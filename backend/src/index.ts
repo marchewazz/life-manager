@@ -11,6 +11,8 @@ import NotesController from './controllers/NotesController';
 import MoneyController from './controllers/MoneyController';
 import DatesController from './controllers/DatesController';
 
+import periodDBOperations from './utilities/periodDBOperations';
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -55,6 +57,10 @@ io.on("connection", (socket: any) => {
     socket.emit("userData", await ac.getUserData(data.token))
   })
 })
+
+setInterval(() => {
+  periodDBOperations();
+}, 1000)
 
 http.listen(port, () => {
   return console.log(`express is listening at http://localhost:${port}`);
