@@ -6,11 +6,57 @@
             </p>
         </ng-container>
         <ng-container *ngIf="userData.dates.dates.length">
-            <div *ngFor="let date of userData.dates.dates">
-                {{ date.title }}
-                {{ date.description }}
-                {{ date.dateTime }}
+            <div class="grid grid-flow-col place-items-stretch">
+                <div *ngFor="let tab of datesTabs"
+                class="grid grid-flow-col place-items-stretch text-center">
+                    <input class="hidden peer"
+                    type="radio" 
+                    name="tabs" 
+                    [id]="tab"
+                    [value]="tab"
+                    [formControl]="datesTabControl">
+                    <label class="border-b border-light-blue text-light-blue
+                    peer-checked:border-main-red peer-checked:text-main-red" 
+                    [for]="tab">
+                        {{ tab }}
+                    </label>
+                </div>
             </div>
+            <ng-container *ngIf="datesTabControl.value==''">
+                <div *ngFor="let date of userData.dates.dates">
+                    {{ date.title }}
+                    {{ date.description }}
+                    {{ date.dateTime }}
+                </div>
+            </ng-container>
+            <ng-container *ngIf="datesTabControl.value=='past'">
+                <ng-container *ngIf="!pastAndUpcomingDates.past.length">
+                    <p>
+                        No past dates
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="pastAndUpcomingDates.past.length">
+                    <div *ngFor="let date of pastAndUpcomingDates.past">
+                        {{ date.title }}
+                        {{ date.description }}
+                        {{ date.dateTime }}
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="datesTabControl.value=='upcoming'">
+                <ng-container *ngIf="!pastAndUpcomingDates.upcoming.length">
+                    <p>
+                        No upcoming dates
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="pastAndUpcomingDates.upcoming.length">
+                    <div *ngFor="let date of pastAndUpcomingDates.upcoming">
+                        {{ date.title }}
+                        {{ date.description }}
+                        {{ date.dateTime }}
+                    </div>
+                </ng-container>
+            </ng-container>
         </ng-container>
     </div>
     <app-dates-form [userData]="userData"></app-dates-form>

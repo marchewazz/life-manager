@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { MoneyService } from 'src/app/services/moneyService/money.service';
+import { getDatesPastAndUpcoming } from 'src/app/utilities';
 
 @Component({
   selector: 'app-money-dashboard',
@@ -13,13 +14,21 @@ export class MoneyDashboardComponent implements OnInit {
   @Input() userData: any = {};
 
   balanceControl: FormControl = new FormControl();
-
+ 
   editBalance: boolean = false;
 
+  operationsTabControl: FormControl = new FormControl("");
+  pastAndUpcomingOperations: any = {};
+
+  operationsTabs: string[] = ["past", "upcoming"];
+  
   constructor(private ms: MoneyService) { }
 
   ngOnInit(): void {
-    this.balanceControl.setValue(this.userData.balance.toString());
+    setInterval(() => {
+      this.balanceControl.setValue(this.userData.balance.toString());
+      this.pastAndUpcomingOperations = getDatesPastAndUpcoming(this.userData.dates.money);
+    }, 1000)
   }
 
   sendBalance(): void {

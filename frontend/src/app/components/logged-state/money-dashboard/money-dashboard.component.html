@@ -50,27 +50,108 @@
                 </div>
             </ng-container>
         </p>
-        <div>
-            <div *ngFor="let operation of userData.dates.money">
-                {{ operation.title }}
-                <p *ngIf="operation.secondSide">
-                    <span *ngIf="operation.direction=='ingoing'">
-                        From: {{ operation.secondSide }}
-                    </span>
-                    <span *ngIf="operation.direction=='outgoing'">
-                        To: {{ operation.secondSide }}
-                    </span>
-                </p>
-                <p *ngIf="operation.dateTime">
-                    {{ operation.dateTime }}
-                </p>
-                <p>
-                    <span *ngIf="operation.direction=='outgoing'">
-                        -
-                    </span>
-                    {{ operation.amount }} $
-                </p>
+        <div *ngIf="!userData.dates.money.length">
+            <p>
+                No operations saved
+            </p>
+        </div>
+        <div *ngIf="userData.dates.money.length">
+            <div class="grid grid-flow-col place-items-stretch">
+                <div *ngFor="let tab of operationsTabs"
+                class="grid grid-flow-col place-items-stretch text-center">
+                    <input class="hidden peer"
+                    type="radio" 
+                    name="tabs" 
+                    [id]="tab"
+                    [value]="tab"
+                    [formControl]="operationsTabControl">
+                    <label class="border-b border-light-blue text-light-blue
+                    peer-checked:border-main-red peer-checked:text-main-red" 
+                    [for]="tab">
+                        {{ tab }}
+                    </label>
+                </div>
             </div>
+            <ng-container *ngIf="operationsTabControl.value==''">
+                <div *ngFor="let operation of userData.dates.money">
+                    {{ operation.title }}
+                    <p *ngIf="operation.secondSide">
+                        <span *ngIf="operation.direction=='ingoing'">
+                            From: {{ operation.secondSide }}
+                        </span>
+                        <span *ngIf="operation.direction=='outgoing'">
+                            To: {{ operation.secondSide }}
+                        </span>
+                    </p>
+                    <p *ngIf="operation.dateTime">
+                        {{ operation.dateTime }}
+                    </p>
+                    <p>
+                        <span *ngIf="operation.direction=='outgoing'">
+                            -
+                        </span>
+                        {{ operation.amount }} $
+                    </p>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="operationsTabControl.value=='past'">
+                <ng-container *ngIf="!pastAndUpcomingOperations.past.length">
+                    <p>
+                        No past operations
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="pastAndUpcomingOperations.past.length">
+                    <div *ngFor="let operation of pastAndUpcomingOperations.past">
+                        {{ operation.title }}
+                        <p *ngIf="operation.secondSide">
+                            <span *ngIf="operation.direction=='ingoing'">
+                                From: {{ operation.secondSide }}
+                            </span>
+                            <span *ngIf="operation.direction=='outgoing'">
+                                To: {{ operation.secondSide }}
+                            </span>
+                        </p>
+                        <p *ngIf="operation.dateTime">
+                            {{ operation.dateTime }}
+                        </p>
+                        <p>
+                            <span *ngIf="operation.direction=='outgoing'">
+                                -
+                            </span>
+                            {{ operation.amount }} $
+                        </p>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="operationsTabControl.value=='upcoming'">
+                <ng-container *ngIf="!pastAndUpcomingOperations.upcoming.length">
+                    <p>
+                        No past operations
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="pastAndUpcomingOperations.upcoming.length">
+                    <div *ngFor="let operation of pastAndUpcomingOperations.upcoming">
+                        {{ operation.title }}
+                        <p *ngIf="operation.secondSide">
+                            <span *ngIf="operation.direction=='ingoing'">
+                                From: {{ operation.secondSide }}
+                            </span>
+                            <span *ngIf="operation.direction=='outgoing'">
+                                To: {{ operation.secondSide }}
+                            </span>
+                        </p>
+                        <p *ngIf="operation.dateTime">
+                            {{ operation.dateTime }}
+                        </p>
+                        <p>
+                            <span *ngIf="operation.direction=='outgoing'">
+                                -
+                            </span>
+                            {{ operation.amount }} $
+                        </p>
+                    </div>
+                </ng-container>
+            </ng-container>
         </div>
     </div>
     <div>
