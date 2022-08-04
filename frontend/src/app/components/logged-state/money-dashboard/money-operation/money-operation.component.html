@@ -1,0 +1,22 @@
+<div class="border-l-4"
+[ngClass]="{'border-red-700': operationData.direction=='outgoing', 'border-green-700': operationData.direction=='ingoing'}">
+    {{ operationData.title }}
+    <p *ngIf="operationData.secondSide">
+        <span *ngIf="operationData.direction=='ingoing'">
+            From: {{ operationData.secondSide }}
+        </span>
+        <span *ngIf="operationData.direction=='outgoing'">
+            To: {{ operationData.secondSide }}
+        </span>
+    </p>
+    <p *ngIf="operationData.dateTime">
+        {{ operationData.dateTime }}
+    </p>
+    <p>
+        <span *ngIf="operationData.direction=='outgoing'">
+            -
+        </span>
+        {{ operationData.amount }} $
+    </p>
+</div>
+   

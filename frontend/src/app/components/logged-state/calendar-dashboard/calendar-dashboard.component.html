@@ -85,26 +85,14 @@
                     </p>
                 </ng-container>
                 <ng-container *ngIf="eventsOnSelectedDay.length">
-                    <div *ngFor="let date of eventsOnSelectedDay">
-                        <p>
-                            {{ date.title }}
-                        </p>
-                        <p *ngIf="date.description">
-                            {{ date.description }}
-                        </p>
-                        <p *ngIf="date.amount">
-                            {{ date.amount }}$
-                            <span *ngIf="date.secondSide">
-                                <span *ngIf="date.direction=='ingoing'">
-                                    from 
-                                </span>
-                                <span *ngIf="date.direction=='outgoing'">
-                                    to 
-                                </span>
-                                {{ date.secondSide }}
-                            </span>
-                        </p>
-                    </div>
+                    <ng-container *ngFor="let date of eventsOnSelectedDay">
+                        <ng-container *ngIf="isOperation(date)">
+                            <app-money-operation [operationData]="date"></app-money-operation>
+                        </ng-container>
+                        <ng-container *ngIf="!isOperation(date)">
+                            <app-date-display [dateData]="date"></app-date-display>
+                        </ng-container>
+                    </ng-container>
                 </ng-container>
             </div>
         </div>

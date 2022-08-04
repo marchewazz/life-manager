@@ -85,4 +85,9 @@ export class CalendarDashboardComponent implements OnInit {
     }
   }
 
+  isOperation(date: any) {
+    if ("amount" in date) return true
+    else return false
+  }
+
 }

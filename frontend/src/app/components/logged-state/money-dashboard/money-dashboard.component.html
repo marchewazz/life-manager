@@ -73,26 +73,8 @@
                 </div>
             </div>
             <ng-container *ngIf="operationsTabControl.value==''">
-                <div *ngFor="let operation of userData.dates.money">
-                    {{ operation.title }}
-                    <p *ngIf="operation.secondSide">
-                        <span *ngIf="operation.direction=='ingoing'">
-                            From: {{ operation.secondSide }}
-                        </span>
-                        <span *ngIf="operation.direction=='outgoing'">
-                            To: {{ operation.secondSide }}
-                        </span>
-                    </p>
-                    <p *ngIf="operation.dateTime">
-                        {{ operation.dateTime }}
-                    </p>
-                    <p>
-                        <span *ngIf="operation.direction=='outgoing'">
-                            -
-                        </span>
-                        {{ operation.amount }} $
-                    </p>
-                </div>
+                <app-money-operation *ngFor="let operation of userData.dates.money" 
+                [operationData]="operation"></app-money-operation>
             </ng-container>
             <ng-container *ngIf="operationsTabControl.value=='past'">
                 <ng-container *ngIf="!pastAndUpcomingOperations.past.length">
@@ -101,26 +83,8 @@
                     </p>
                 </ng-container>
                 <ng-container *ngIf="pastAndUpcomingOperations.past.length">
-                    <div *ngFor="let operation of pastAndUpcomingOperations.past">
-                        {{ operation.title }}
-                        <p *ngIf="operation.secondSide">
-                            <span *ngIf="operation.direction=='ingoing'">
-                                From: {{ operation.secondSide }}
-                            </span>
-                            <span *ngIf="operation.direction=='outgoing'">
-                                To: {{ operation.secondSide }}
-                            </span>
-                        </p>
-                        <p *ngIf="operation.dateTime">
-                            {{ operation.dateTime }}
-                        </p>
-                        <p>
-                            <span *ngIf="operation.direction=='outgoing'">
-                                -
-                            </span>
-                            {{ operation.amount }} $
-                        </p>
-                    </div>
+                    <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.past" 
+                    [operationData]="operation"></app-money-operation>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="operationsTabControl.value=='upcoming'">
@@ -130,26 +94,8 @@
                     </p>
                 </ng-container>
                 <ng-container *ngIf="pastAndUpcomingOperations.upcoming.length">
-                    <div *ngFor="let operation of pastAndUpcomingOperations.upcoming">
-                        {{ operation.title }}
-                        <p *ngIf="operation.secondSide">
-                            <span *ngIf="operation.direction=='ingoing'">
-                                From: {{ operation.secondSide }}
-                            </span>
-                            <span *ngIf="operation.direction=='outgoing'">
-                                To: {{ operation.secondSide }}
-                            </span>
-                        </p>
-                        <p *ngIf="operation.dateTime">
-                            {{ operation.dateTime }}
-                        </p>
-                        <p>
-                            <span *ngIf="operation.direction=='outgoing'">
-                                -
-                            </span>
-                            {{ operation.amount }} $
-                        </p>
-                    </div>
+                        <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.upcoming" 
+                        [operationData]="operation"></app-money-operation>
                 </ng-container>
             </ng-container>
         </div>
