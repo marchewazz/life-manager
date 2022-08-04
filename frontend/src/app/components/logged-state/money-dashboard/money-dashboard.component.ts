@@ -25,8 +25,8 @@ export class MoneyDashboardComponent implements OnInit {
   constructor(private ms: MoneyService) { }
 
   ngOnInit(): void {
+    this.balanceControl.setValue(this.userData.balance.toString());
     setInterval(() => {
-      this.balanceControl.setValue(this.userData.balance.toString());
       this.pastAndUpcomingOperations = getDatesPastAndUpcoming(this.userData.dates.money);
     }, 1000)
   }
