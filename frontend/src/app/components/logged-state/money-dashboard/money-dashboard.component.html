@@ -74,7 +74,7 @@
             </div>
             <ng-container *ngIf="operationsTabControl.value==''">
                 <app-money-operation *ngFor="let operation of userData.dates.money" 
-                [operationData]="operation"></app-money-operation>
+                [operationData]="operation" [userData]="userData"></app-money-operation>
             </ng-container>
             <ng-container *ngIf="operationsTabControl.value=='past'">
                 <ng-container *ngIf="!pastAndUpcomingOperations.past.length">
@@ -84,7 +84,7 @@
                 </ng-container>
                 <ng-container *ngIf="pastAndUpcomingOperations.past.length">
                     <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.past" 
-                    [operationData]="operation"></app-money-operation>
+                    [operationData]="operation" [userData]="userData"></app-money-operation>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="operationsTabControl.value=='upcoming'">
@@ -95,7 +95,7 @@
                 </ng-container>
                 <ng-container *ngIf="pastAndUpcomingOperations.upcoming.length">
                         <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.upcoming" 
-                        [operationData]="operation"></app-money-operation>
+                        [operationData]="operation" [userData]="userData"></app-money-operation>
                 </ng-container>
             </ng-container>
         </div>

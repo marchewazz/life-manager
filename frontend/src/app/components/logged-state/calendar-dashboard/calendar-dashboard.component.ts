@@ -61,8 +61,6 @@ export class CalendarDashboardComponent implements OnInit {
         }
       }
     }
-    console.log(this.eventsOnSelectedDay);
-    
   }
 
   onChangeDate(): void {

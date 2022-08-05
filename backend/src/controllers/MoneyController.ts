@@ -33,6 +33,16 @@ class MoneyController {
             }
         })
     }
+    public async deleteOperation(data: any) {
+        const collection = MongoDBClient.db("life-manager").collection("accounts");
+        await collection.updateOne({"_id": new ObjectId(data.userID)}, {
+            $pull: {
+                "dates.money": {
+                    operationID: data.operationID
+                }
+            }
+        })
+    }
 }
 
 export default MoneyController;

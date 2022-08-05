@@ -23,11 +23,9 @@
                 </div>
             </div>
             <ng-container *ngIf="datesTabControl.value==''">
-                <div *ngFor="let date of userData.dates.dates">
-                    {{ date.title }}
-                    {{ date.description }}
-                    {{ date.dateTime }}
-                </div>
+                <ng-container *ngFor="let date of userData.dates.dates">
+                    <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                </ng-container>
             </ng-container>
             <ng-container *ngIf="datesTabControl.value=='past'">
                 <ng-container *ngIf="!pastAndUpcomingDates.past.length">
@@ -36,11 +34,9 @@
                     </p>
                 </ng-container>
                 <ng-container *ngIf="pastAndUpcomingDates.past.length">
-                    <div *ngFor="let date of pastAndUpcomingDates.past">
-                        {{ date.title }}
-                        {{ date.description }}
-                        {{ date.dateTime }}
-                    </div>
+                    <ng-container *ngFor="let date of pastAndUpcomingDates.past">
+                        <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                    </ng-container>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="datesTabControl.value=='upcoming'">
@@ -50,11 +46,9 @@
                     </p>
                 </ng-container>
                 <ng-container *ngIf="pastAndUpcomingDates.upcoming.length">
-                    <div *ngFor="let date of pastAndUpcomingDates.upcoming">
-                        {{ date.title }}
-                        {{ date.description }}
-                        {{ date.dateTime }}
-                    </div>
+                    <ng-container *ngFor="let date of pastAndUpcomingDates.upcoming">
+                        <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                    </ng-container>
                 </ng-container>
             </ng-container>
         </ng-container>

@@ -17,4 +17,8 @@ export class MoneyService {
     this.socket.emit("saveOperation", operation)
   }
 
-}
+  deleteOperation(operation: any) {
+    this.socket.emit("deleteOperation", operation)
+  }
+
+} 

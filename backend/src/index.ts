@@ -36,6 +36,7 @@ io.on("connection", (socket: any) => {
   socket.on("userData", async (data: any) => {
     socket.emit("userData", await ac.getUserData(data.token))
   })
+  // NOTE
   socket.on("sendNote",async (data: any) => {
     await nc.sendNote(data)
     socket.emit("userData", await ac.getUserData(data.token))
@@ -48,19 +49,29 @@ io.on("connection", (socket: any) => {
     await mc.updateBalance(data)
     socket.emit("userData", await ac.getUserData(data.token))
   })
+  // MONEY
   socket.on("saveOperation",async (data: any) => {
     await mc.saveOperation(data)
     socket.emit("userData", await ac.getUserData(data.token))
   })
+  socket.on("deleteOperation",async (data: any) => {
+    await mc.deleteOperation(data)
+    socket.emit("userData", await ac.getUserData(data.token))
+  })
+  // DATES
   socket.on("saveDate",async (data: any) => {
     await dc.saveDate(data)
+    socket.emit("userData", await ac.getUserData(data.token))
+  })
+  socket.on("deleteDate",async (data: any) => {
+    await dc.deleteDate(data)
     socket.emit("userData", await ac.getUserData(data.token))
   })
 })
 
 setInterval(() => {
   periodDBOperations();
-}, 1000)
+}, 60000)
 
 http.listen(port, () => {
   return console.log(`express is listening at http://localhost:${port}`);

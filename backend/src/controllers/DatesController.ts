@@ -23,6 +23,17 @@ class DatesController {
             }
         })
     }
+
+    public async deleteDate(data: any) {
+        const collection = MongoDBClient.db("life-manager").collection("accounts");
+        await collection.updateOne({"_id": new ObjectId(data.userID)}, {
+            $pull: {
+                "dates.dates": {
+                    dateID: data.dateID
+                }
+            }
+        })
+    }
 }
 
 export default DatesController;

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { MoneyService } from 'src/app/services/moneyService/money.service';
+
 @Component({
   selector: 'app-money-operation',
   templateUrl: './money-operation.component.html',
@@ -8,10 +10,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MoneyOperationComponent implements OnInit {
 
   @Input() operationData: any;
-
-  constructor() { }
+  @Input() userData: any = {};
+  
+  constructor(private ms: MoneyService) { }
 
   ngOnInit(): void {
+  }
+
+  deleteOperation(operationID: string) {
+    this.ms.deleteOperation({"userID": this.userData._id, "token": localStorage.getItem("token"), "operationID": operationID})
   }
 
 }

@@ -87,7 +87,7 @@
                 <ng-container *ngIf="eventsOnSelectedDay.length">
                     <ng-container *ngFor="let date of eventsOnSelectedDay">
                         <ng-container *ngIf="isOperation(date)">
-                            <app-money-operation [operationData]="date"></app-money-operation>
+                            <app-money-operation [operationData]="date" [userData]="userData"></app-money-operation>
                         </ng-container>
                         <ng-container *ngIf="!isOperation(date)">
                             <app-date-display [dateData]="date"></app-date-display>
