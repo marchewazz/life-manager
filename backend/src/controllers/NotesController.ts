@@ -15,7 +15,8 @@ class NotesController {
                 notes: {
                     noteID: randomString,
                     title: note.title,
-                    description: note.description
+                    description: note.description,
+                    color: note.color
                 }
             }
         })

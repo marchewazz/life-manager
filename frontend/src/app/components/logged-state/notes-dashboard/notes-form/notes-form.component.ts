@@ -14,6 +14,9 @@ export class NotesFormComponent implements OnInit {
 
   titleControl: FormControl = new FormControl("");
   descriptionControl: FormControl = new FormControl("");
+  colorControl: FormControl = new FormControl("#FFF600");
+
+  notesColors: string[] = ["#FFF600", "#FF007C", "#FF6200", "#00FF0C"];
 
   info: string = "";
 
@@ -21,11 +24,17 @@ export class NotesFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
   sendNote(): void {
     if (!this.titleControl.value && !this.descriptionControl.value) this.info = "You need to pass atleast one infomation"
     else {
-      this.ns.sendNote({"userID": this.userData._id, "token": localStorage.getItem("token"), "title": this.titleControl.value, "description": this.descriptionControl.value})
+      this.ns.sendNote({
+        "userID": this.userData._id, 
+        "token": localStorage.getItem("token"), 
+        "title": this.titleControl.value, 
+        "description": this.descriptionControl.value,
+        "color": this.colorControl.value
+      })
       this.clearForm();
     }  
     setTimeout(() => {

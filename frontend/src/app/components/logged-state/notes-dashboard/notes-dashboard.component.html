@@ -5,7 +5,8 @@
         </ng-container>
         <ng-container *ngIf="userData.notes.length">
             <div *ngFor="let note of userData.notes"
-            class="border-2 border-black">
+            class="border-2 border-black"
+            [ngStyle]="{backgroundColor: note.color}">
                 {{ note.title }}
                 {{ note.description }}
                 <button (click)="deleteNote(note.noteID)">

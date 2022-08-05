@@ -5,6 +5,20 @@
     <input type="text" 
     [formControl]="descriptionControl" 
     placeholder="description">
+    <div class="flex justify-evenly">
+        <span *ngFor="let color of notesColors">
+            <input class="peer hidden" 
+            type="radio" 
+            name="color" 
+            [formControl]="colorControl"
+            [id]="color"
+            [value]="color">
+            <label [for]="color"
+            class="note-color" 
+            [ngStyle]="{backgroundColor: color}">
+            </label>
+        </span>
+    </div>
     {{ info }}
     <div class="grid grid-flow-col place-items-center">
         <button class="red-button px-14 py-4" 

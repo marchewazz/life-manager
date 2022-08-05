@@ -18,4 +18,8 @@
         @apply grid place-items-center text-white bg-green-700 border-2 border-black 
         hover:bg-white hover:text-green-700
     }
+    .note-color {
+        @apply border-2 border-transparent px-5 rounded-full
+        peer-checked:border-blue-800
+    }
 }
