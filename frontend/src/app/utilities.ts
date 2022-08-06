@@ -10,7 +10,7 @@ export function getDateTime(date: Date): string {
     return `${date.getFullYear()}-${padding(date.getMonth()+1)}-${padding(date.getDate())}T${padding(date.getHours())}:${padding(date.getMinutes())}`
 } 
 
-export function getDatesPastAndUpcoming (dates: any) {
+export function getDatesPastAndUpcoming(dates: any) {
     var sortedDates: any = {
         past: [],
         upcoming: [],
@@ -22,4 +22,8 @@ export function getDatesPastAndUpcoming (dates: any) {
     }
 
     return sortedDates;
+}
+
+export function sortDatesArray(array: any[]): any[] {
+    return array.sort((object1: any, object2: any) => { return new Date(object1.dateTime).getTime() - new Date(object2.dateTime).getTime() })
 }

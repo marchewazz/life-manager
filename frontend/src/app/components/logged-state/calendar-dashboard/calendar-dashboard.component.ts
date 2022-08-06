@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { monthsNames, daysNames } from 'src/app/utilities';
+import { monthsNames, daysNames, sortDatesArray } from 'src/app/utilities';
 
 @Component({
   selector: 'app-calendar-dashboard',
@@ -61,6 +61,7 @@ export class CalendarDashboardComponent implements OnInit {
         }
       }
     }
+    this.eventsOnSelectedDay = sortDatesArray(this.eventsOnSelectedDay);
   }
 
   onChangeDate(): void {
@@ -79,7 +80,7 @@ export class CalendarDashboardComponent implements OnInit {
         if (operation.direction == "ingoing") this.estimatedBalance = this.estimatedBalance + parseFloat(operation.amount)
         if (operation.direction == "outgoing") this.estimatedBalance = this.estimatedBalance - parseFloat(operation.amount)
       }
-      this.estimatedBalance = parseFloat(this.estimatedBalance.toFixed(2))
+      this.estimatedBalance = parseFloat(this.estimatedBalance.toFixed(2));
     }
   }
 

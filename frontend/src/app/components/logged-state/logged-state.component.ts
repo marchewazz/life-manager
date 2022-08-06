@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
+import { sortDatesArray } from 'src/app/utilities';
 
 @Component({
   selector: 'app-logged-state',
@@ -26,6 +27,8 @@ export class LoggedStateComponent implements OnInit {
     this.as.getUserData();
     this.as.onGetUserData().subscribe((res: any) => {
       this.userData = res.userData;
+      this.userData.dates.money = sortDatesArray(this.userData.dates.money);
+      this.userData.dates.dates = sortDatesArray(this.userData.dates.dates);
       this.ready = true;
     })
   }
