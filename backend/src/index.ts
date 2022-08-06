@@ -12,6 +12,7 @@ import MoneyController from './controllers/MoneyController';
 import DatesController from './controllers/DatesController';
 
 import periodDBOperations from './utilities/periodDBOperations';
+import AccountsController from './controllers/AccountsController';
 
 const app = express();
 app.use(cors());
@@ -29,11 +30,17 @@ app.use("/accounts", accountsRouter);
 
 io.on("connection", (socket: any) => {
   const ac = new AuthController();
+  const acC = new AccountsController();
   const nc = new NotesController();
   const mc = new MoneyController();
   const dc = new DatesController();
 
+  // USERDATA
   socket.on("userData", async (data: any) => {
+    socket.emit("userData", await ac.getUserData(data.token))
+  })
+  socket.on("editUserData", async (data: any) => {
+    acC.editUserData(data)
     socket.emit("userData", await ac.getUserData(data.token))
   })
   // NOTE

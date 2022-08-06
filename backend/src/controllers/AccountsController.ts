@@ -2,6 +2,7 @@ import crypto from 'crypto';
 
 import MongoDBClient from "../utilities/MongoDBClient";
 import createRandomString from '../utilities/CreateRandomString';
+import { ObjectId } from 'mongodb';
 
 class AccountsController {
     public async registerAccounts(req: any, res: any) {
@@ -47,6 +48,17 @@ class AccountsController {
             }
             
         }
+    }
+
+    public async editUserData(data: any) {
+        const collection = MongoDBClient.db("life-manager").collection("accounts");
+
+        collection.updateOne({"_id": new ObjectId(data.accountID)}, {
+            $set: {
+                accountEmail: data.accountEmail,
+                accountName: data.accountName
+            }
+        })
     }
 }
 
