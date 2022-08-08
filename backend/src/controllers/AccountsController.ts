@@ -23,7 +23,6 @@ class AccountsController {
     public async loginAccount(req: any, res: any) {
         const userData = req.body;
         userData.accountPassword = crypto.createHash('sha256').update(userData.accountPassword).digest('base64');
-        console.log(userData);
         
         await MongoDBClient.connect()
         const collection = MongoDBClient.db("life-manager").collection("accounts");
@@ -59,6 +58,8 @@ class AccountsController {
                 accountName: data.accountName
             }
         })
+
+        return {"message": "User edited!"}
     }
 }
 

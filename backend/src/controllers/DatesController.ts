@@ -5,7 +5,6 @@ import createRandomString from "../utilities/CreateRandomString";
 
 class DatesController {
     public async saveDate(data: any) {
-        console.log(data);
         const collection = MongoDBClient.db("life-manager").collection("accounts");
         while (true) {
             var randomString = createRandomString(10);
@@ -22,6 +21,8 @@ class DatesController {
                 }
             }
         })
+
+        return {"message": "Date added!"}
     }
 
     public async deleteDate(data: any) {
@@ -33,6 +34,7 @@ class DatesController {
                 }
             }
         })
+        return {"message": "Date deleted!"}
     }
 }
 

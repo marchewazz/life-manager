@@ -1,4 +1,7 @@
 <div *ngIf="ready">
+    <div class="absolute mt-5 left-1/2">
+        <app-info-popup></app-info-popup>
+    </div>
     <div class="grid grid-flow-col">
         <ng-container *ngFor="let tab of tabs">
             <div class="grid grid-flow-col items-stretch">
@@ -9,6 +12,7 @@
                 [id]="tab"
                 [value]="tab">
                 <label class="tab-button" 
+                id="{{tab}}-label"
                 [for]="tab">
                     {{ tab.toUpperCase() }}
                 </label>

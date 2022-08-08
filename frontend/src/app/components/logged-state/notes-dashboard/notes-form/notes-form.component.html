@@ -1,9 +1,11 @@
 <div class="grid grid-flow-row">
-    <input type="text" 
+    <input type="text"
+    id="noteTitle" 
     [formControl]="titleControl" 
     placeholder="title">
     <input type="text" 
     [formControl]="descriptionControl" 
+    id="noteDescription" 
     placeholder="description">
     <div class="flex justify-evenly">
         <span *ngFor="let color of notesColors">
@@ -22,6 +24,7 @@
     {{ info }}
     <div class="grid grid-flow-col place-items-center">
         <button class="red-button px-14 py-4" 
+        id="noteClearForm"
         (click)="clearForm()">
             <svg xmlns="http://www.w3.org/2000/svg" 
             class="h-6 w-6" 
@@ -36,6 +39,7 @@
             </svg>
         </button>
         <button class="green-button px-14 py-4" 
+        id="noteSubmitForm"
         (click)="sendNote()">
             <svg xmlns="http://www.w3.org/2000/svg" 
             class="h-6 w-6" 

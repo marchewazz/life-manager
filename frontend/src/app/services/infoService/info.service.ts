@@ -5,16 +5,11 @@ import { Socket } from 'ngx-socket-io';
 @Injectable({
   providedIn: 'root'
 })
-export class DatesService {
+export class InfoService {
 
   constructor(private socket: Socket) { }
 
-  saveDate(date: any) { 
-    this.socket.emit("saveDate", date);
+  onGetInfo() {
+    return this.socket.fromEvent("sendInfo");
   }
-
-  deleteDate(date: any) { 
-    this.socket.emit("deleteDate", date);
-  }
-
 }

@@ -20,6 +20,7 @@ import { DatesFormComponent } from './components/logged-state/dates-dashboard/da
 import { NotesFormComponent } from './components/logged-state/notes-dashboard/notes-form/notes-form.component';
 import { MoneyOperationComponent } from './components/logged-state/money-dashboard/money-operation/money-operation.component';
 import { DateDisplayComponent } from './components/logged-state/dates-dashboard/date-display/date-display.component';
+import { InfoPopupComponent } from './components/logged-state/info-popup/info-popup.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -39,7 +40,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     DatesFormComponent,
     NotesFormComponent,
     MoneyOperationComponent,
-    DateDisplayComponent
+    DateDisplayComponent,
+    InfoPopupComponent
   ],
   imports: [
     BrowserModule,

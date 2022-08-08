@@ -10,6 +10,8 @@ class MoneyController {
             $set: {
                 balance: parseFloat(data.newBalance)
         }})
+
+        return {"message": "Balance updated!"}
     }
 
     public async saveOperation(data: any) {
@@ -32,6 +34,8 @@ class MoneyController {
                 }
             }
         })
+
+        return {"message": "Operation added!"}
     }
     public async deleteOperation(data: any) {
         const collection = MongoDBClient.db("life-manager").collection("accounts");
@@ -42,6 +46,8 @@ class MoneyController {
                 }
             }
         })
+
+        return {"message": "Operation deleted!"}
     }
 }
 

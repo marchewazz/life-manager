@@ -20,6 +20,8 @@ class NotesController {
                 }
             }
         })
+
+        return {"message": "Note added!"}
     }
     public async deleteNode(note: any) {
         const collection = MongoDBClient.db("life-manager").collection("accounts");        
@@ -30,6 +32,7 @@ class NotesController {
                 }
             }
         })
+        return {"message": "Note deleted!"}
     }
 }
 

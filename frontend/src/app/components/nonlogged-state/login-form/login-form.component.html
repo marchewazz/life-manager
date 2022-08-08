@@ -1,13 +1,16 @@
 <div>
     <form>
         <input type="text" 
+        id="loginEmail"
         placeholder="email"
         [formControl]="emailControl">
         <input type="password" 
+        id="loginPassword"
         placeholder="pass"
         [formControl]="passwordControl">
     </form>
-    <button (click)="loginUser()">
+    <button id="loginSubmit" 
+    (click)="loginUser()">
         send
     </button>
 
