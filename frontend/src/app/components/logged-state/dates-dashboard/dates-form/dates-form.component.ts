@@ -18,13 +18,15 @@ export class DatesFormComponent implements OnInit {
   descriptionControl: FormControl = new FormControl("");
   dateTimeControl: FormControl = new FormControl(getDateTime(this.selectedDate));
 
+  info: string = "";
+
   constructor(private ds: DatesService) { }
 
   ngOnInit(): void { }
 
   saveDate(): void {
     if (!this.titleControl.value) {
-      console.log(`error`);
+      this.info = "Pass necessary data";
     } else {
       this.ds.saveDate({
         "userID": this.userData._id, 
@@ -34,6 +36,9 @@ export class DatesFormComponent implements OnInit {
         "dateTime": this.dateTimeControl.value
       })
     }
+    setTimeout(() => {
+      this.info = "";
+    }, 5000);
   }
 
   clearForm(): void {

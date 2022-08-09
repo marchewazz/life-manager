@@ -37,42 +37,42 @@ io.on("connection", (socket: any) => {
 
   // USERDATA
   socket.on("userData", async (data: any) => {
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   socket.on("editUserData", async (data: any) => {
-    socket.emit("sendInfo", await acC.editUserData(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await acC.editUserData(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   // NOTE
   socket.on("sendNote",async (data: any) => {
-    socket.emit("sendInfo", await nc.sendNote(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await nc.sendNote(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   socket.on("deleteNote",async (data: any) => {
-    socket.emit("sendInfo", await nc.deleteNode(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await nc.deleteNode(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   socket.on("updateBalance", async (data: any) => {
-    socket.emit("sendInfo", await mc.updateBalance(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await mc.updateBalance(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   // MONEY
   socket.on("saveOperation",async (data: any) => {
-    socket.emit("sendInfo", await mc.saveOperation(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await mc.saveOperation(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   socket.on("deleteOperation",async (data: any) => {
-    socket.emit("sendInfo", await mc.deleteOperation(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await mc.deleteOperation(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   // DATES
   socket.on("saveDate",async (data: any) => {
-    socket.emit("sendInfo", await dc.saveDate(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await dc.saveDate(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
   socket.on("deleteDate",async (data: any) => {
-    socket.emit("sendInfo", await dc.deleteDate(data))
-    socket.emit("userData", await ac.getUserData(data.token))
+    await socket.emit("sendInfo", await dc.deleteDate(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
   })
 })
 

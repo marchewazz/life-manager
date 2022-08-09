@@ -20,6 +20,8 @@ export class MoneyFormComponent implements OnInit {
   secondSideControl: FormControl = new FormControl("");
   amountControl: FormControl = new FormControl("0.00");
 
+  info: string = "";
+
   constructor(private ms: MoneyService) { }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class MoneyFormComponent implements OnInit {
 
   saveOperation(): void {    
     if(!this.titleControl.value || !this.amountControl.value) {
-      console.log(`error`);
+      this.info = "Pass necessary data"
     } else {
       this.ms.saveOperation({
         "userID": this.userData._id, 
@@ -39,6 +41,9 @@ export class MoneyFormComponent implements OnInit {
         "amount": this.amountControl.value
       })
     }
+    setTimeout(() => {
+      this.info = "";
+    }, 5000)
   }
 
   clearForm(): void {

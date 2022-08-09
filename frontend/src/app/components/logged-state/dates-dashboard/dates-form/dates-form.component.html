@@ -10,6 +10,9 @@
     min="2010-01-01T00:00"
     max="2024-12-31T23:59"
     [formControl]="dateTimeControl">
+    <p>
+        {{ info }}
+    </p>
     <div class="grid grid-flow-col place-items-center">
         <button class="red-button px-14 py-4"
         (click)="clearForm()">
