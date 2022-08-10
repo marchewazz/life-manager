@@ -1,11 +1,14 @@
 <div class="grid grid-flow-row">
     <input type="text"
+    class="input-style"
     placeholder="Title"
     [formControl]="titleControl">
     <input type="text"
+    class="input-style"
     [formControl]="descriptionControl"
     placeholder="description">
     <input type="datetime-local" 
+    class="input-style"
     (keydown)="$event.preventDefault()"
     min="2010-01-01T00:00"
     max="2024-12-31T23:59"

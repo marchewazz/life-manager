@@ -1,8 +1,10 @@
 <div class="grid grid-flow-row">
     <input type="text"
+    class="input-style"
     placeholder="Title"
     [formControl]="titleControl">
-    <select [formControl]="directionControl">
+    <select class="input-style" 
+    [formControl]="directionControl">
         <option value="ingoing">
             Ingoing
         </option>
@@ -11,22 +13,26 @@
         </option>
     </select>
     <input type="datetime-local" 
+    class="input-style"
     (keydown)="$event.preventDefault()"
     min="2010-01-01T00:00"
     max="2024-12-31T23:59"
     [formControl]="dateTimeControl">
     <ng-container *ngIf="directionControl.value=='ingoing'">
         <input type="text"
+        class="input-style"
         placeholder="From"
         [formControl]="secondSideControl">
     </ng-container>
     <ng-container *ngIf="directionControl.value=='outgoing'">
         <input type="text"
+        class="input-style"
         placeholder="To"
         [formControl]="secondSideControl">
     </ng-container>
     <span>
         <input type="text"
+        class="input-style"
         [formControl]="amountControl"> $
     </span>
     <p>

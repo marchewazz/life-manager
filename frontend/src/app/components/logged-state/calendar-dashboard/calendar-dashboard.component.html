@@ -3,7 +3,7 @@
         <div class="grid col-span-7">
             <div class="place-self-center">
                 <form>
-                    <select
+                    <select class="input-style"
                     (change)="getNumberOfDays(); onChangeDate()"
                     [formControl]="monthsControl">
                         <option *ngFor="let month of monthsNames; let i = index"
@@ -11,7 +11,7 @@
                             {{ month }}
                         </option>
                     </select>
-                    <select
+                    <select class="input-style"
                     (change)="getNumberOfDays(); onChangeDate()"
                     [formControl]="yearsControl">
                         <option *ngFor="let year of years"
@@ -50,7 +50,7 @@
                     <p class="grid place-items-center">
                         ADD
                     </p>
-                    <select
+                    <select class="input-style"
                     [formControl]="formTabControl">
                         <option *ngFor="let tab of formTabs"
                         [value]="tab">

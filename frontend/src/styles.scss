@@ -22,4 +22,8 @@
         @apply border-2 border-transparent px-5 rounded-full
         peer-checked:border-blue-800
     }
+    .input-style {
+        @apply bg-transparent  border-0 border-b-2 border-dark-gray text-center
+        focus:ring-0 
+    }
 }
