@@ -1,18 +1,29 @@
-<div>
+<div class="h-full">
     <div class="grid grid-flow-col">
-        <button (click)="tab='login'">
-            Login
-        </button>
-        <button (click)="tab='register'">
-            Register
-        </button>
+        <ng-container *ngFor="let tab of tabs">
+            <div class="grid grid-flow-col items-stretch">
+                <input class="hidden peer"
+                type="radio" 
+                name="tab"
+                [formControl]="tabControl"
+                [id]="tab"
+                [value]="tab">
+                <label class="tab-button py-5" 
+                id="{{tab}}-label"
+                [for]="tab">
+                    {{ tab.toUpperCase() }}
+                </label>
+            </div>
+        </ng-container>
     </div>
-    <div>
-        <ng-container *ngIf="tab=='login'">
-            <app-login-form></app-login-form>
-        </ng-container>
-        <ng-container *ngIf="tab=='register'">
-            <app-register-form></app-register-form>
-        </ng-container>
+    <div class="grid h-full">
+        <div class="place-self-center bg-white rounded-lg p-10 mt-10 shadow-2xl">
+            <ng-container *ngIf="tabControl.value=='login'">
+                <app-login-form></app-login-form>
+            </ng-container>
+            <ng-container *ngIf="tabControl.value=='register'">
+                <app-register-form></app-register-form>
+            </ng-container>
+        </div>
     </div>
 </div>

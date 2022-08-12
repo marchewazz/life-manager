@@ -11,30 +11,46 @@
                 [formControl]="tabControl"
                 [id]="tab"
                 [value]="tab">
-                <label class="tab-button" 
+                <label class="tab-button py-5" 
                 id="{{tab}}-label"
                 [for]="tab">
                     {{ tab.toUpperCase() }}
                 </label>
             </div>
         </ng-container>
+        <button class="tab-button"
+        (click)="logout()">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            stroke-width="2">
+                <path stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" 
+                />
+            </svg>
+        </button>
     </div>
-    <div>
-        <ng-container *ngIf="tabControl.value=='calendar'">
-            <app-calendar-dashboard [userData]="userData"></app-calendar-dashboard>
-        </ng-container>
-        <ng-container *ngIf="tabControl.value=='dates'">
-            <app-dates-dashboard [userData]="userData"></app-dates-dashboard>
-        </ng-container>
-        <ng-container *ngIf="tabControl.value=='notes'">
-            <app-notes-dashboard [userData]="userData"></app-notes-dashboard>
-        </ng-container>
-        <ng-container *ngIf="tabControl.value=='money'">
-            <app-money-dashboard [userData]="userData"></app-money-dashboard>
-        </ng-container>
-        <ng-container *ngIf="tabControl.value=='profile'">
-            <app-profile-dashboard [userData]="userData"></app-profile-dashboard>
-        </ng-container>
+    <div class="grid h-full">
+        <div class="place-self-center bg-white rounded-lg p-10 mt-10 shadow-2xl">
+            <ng-container *ngIf="tabControl.value=='calendar'">
+                <app-calendar-dashboard [userData]="userData"></app-calendar-dashboard>
+            </ng-container>
+            <ng-container *ngIf="tabControl.value=='dates'">
+                <app-dates-dashboard [userData]="userData"></app-dates-dashboard>
+            </ng-container>
+            <ng-container *ngIf="tabControl.value=='notes'">
+                <app-notes-dashboard [userData]="userData"></app-notes-dashboard>
+            </ng-container>
+            <ng-container *ngIf="tabControl.value=='money'">
+                <app-money-dashboard [userData]="userData"></app-money-dashboard>
+            </ng-container>
+            <ng-container *ngIf="tabControl.value=='profile'">
+                <app-profile-dashboard [userData]="userData"></app-profile-dashboard>
+            </ng-container>
+        </div>
     </div>
 </div>
 <div *ngIf="!ready">

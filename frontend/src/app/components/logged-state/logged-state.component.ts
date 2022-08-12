@@ -26,10 +26,19 @@ export class LoggedStateComponent implements OnInit {
   getUserData() {
     this.as.getUserData();
     this.as.onGetUserData().subscribe((res: any) => {
-      this.userData = res.userData;
-      this.userData.dates.money = sortDatesArray(this.userData.dates.money);
-      this.userData.dates.dates = sortDatesArray(this.userData.dates.dates);
-      this.ready = true;
+      if (res.valid) {
+        this.userData = res.userData;
+        this.userData.dates.money = sortDatesArray(this.userData.dates.money);
+        this.userData.dates.dates = sortDatesArray(this.userData.dates.dates);
+        this.ready = true;
+      } else {
+        localStorage.setItem("token", "")
+      }
     })
   }
+
+  logout() {
+    localStorage.setItem("token", "")
+  }
+
 }

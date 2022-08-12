@@ -27,3 +27,11 @@ export function getDatesPastAndUpcoming(dates: any) {
 export function sortDatesArray(array: any[]): any[] {
     return array.sort((object1: any, object2: any) => { return new Date(object1.dateTime).getTime() - new Date(object2.dateTime).getTime() })
 }
+
+export function testEmail(email: string): boolean {
+    return new RegExp(/^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([\.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i).test(email)
+}
+
+export function testPassword(password: string): boolean {
+    return new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).test(password)
+}

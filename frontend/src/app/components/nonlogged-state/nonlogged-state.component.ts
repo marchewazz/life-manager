@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-nonlogged-state',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NonloggedStateComponent implements OnInit {
 
-  tab: string = "login";
+  tabs: string[] = ["login", "register"];
+  tabControl: FormControl = new FormControl("login");
 
   constructor() { }
 

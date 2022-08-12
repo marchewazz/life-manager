@@ -28,15 +28,28 @@ export class LoginFormComponent implements OnInit {
       accountPassword: this.passwordControl.value
     }
 
-    if (!Object.values(userData).some((element: string) => element != "")) {
-      this.info = "smth empty";
+    if (Object.values(userData).some((element: string) => element == "")) {
+      this.info = "Some inputs are empty";
     } else if (!new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$").test(userData.accountEmail)){
-      this.info = "wrogn email";
+      this.info = "Wrong email format";
     } else {
       this.as.loginUser(userData).subscribe((res: any) => {
-        localStorage.setItem("token", res.token)
+        if (res.message != "Logged") {
+          this.info = res.message;
+        } else {
+          localStorage.setItem("token", res.token)
+        }
       })
     }
+
+    setTimeout(() => {
+      this.info = "";
+    }, 5000);
+  }
+
+  clearForm() {
+    this.emailControl.setValue("");
+    this.passwordControl.setValue("");
   }
 
 }

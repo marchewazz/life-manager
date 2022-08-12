@@ -4,7 +4,7 @@
 
 @layer components {
     .calendar-button {
-        @apply grid border-2 border-main-red bg-light-blue text-dark-gray
+        @apply grid border-2 border-main-red bg-light-blue text-dark-gray p-2
         peer-checked:border-dark-gray peer-checked:bg-main-red peer-checked:text-light-blue
     }
     .tab-button {

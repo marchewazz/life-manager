@@ -31,6 +31,7 @@ export class MoneyFormComponent implements OnInit {
     if(!this.titleControl.value || !this.amountControl.value) {
       this.info = "Pass necessary data"
     } else {
+      this.amountControl.setValue(this.amountControl.value.toFixed(2))
       this.ms.saveOperation({
         "userID": this.userData._id, 
         "token": localStorage.getItem("token"), 
@@ -48,7 +49,7 @@ export class MoneyFormComponent implements OnInit {
 
   clearForm(): void {
     this.titleControl.setValue("");
-    this.dateTimeControl.setValue("");
+    this.dateTimeControl.setValue(getDateTime(this.selectedDate));
     this.secondSideControl.setValue("");
     this.amountControl.setValue("0.00");
   }
