@@ -43,6 +43,9 @@ io.on("connection", (socket: any) => {
     await socket.emit("sendInfo", await acC.editUserData(data))
     await socket.emit("userData", await ac.getUserData(data.token))
   })
+  socket.on("logout", async (data: any) => {
+    ac.deleteToken(data)
+  })
   // NOTE
   socket.on("sendNote",async (data: any) => {
     await socket.emit("sendInfo", await nc.sendNote(data))

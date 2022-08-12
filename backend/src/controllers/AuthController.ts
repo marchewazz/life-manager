@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import MongoDBClient from "../utilities/MongoDBClient";
 
 class AuthController {
@@ -12,12 +13,12 @@ class AuthController {
     }
 
     public async deleteToken(data: any) {
-        
         const collection = MongoDBClient.db("life-manager").collection("accounts");
-        
-        await collection.updateMany({"_id": data.userID, "token": data.token}, {
+        await collection.updateOne({"_id": new ObjectId(data.userID)}, {
             $pull: {
-                "tokens.$.token": data.token 
+                "tokens": {
+                    token: data.token
+                } 
             }
         })
     }

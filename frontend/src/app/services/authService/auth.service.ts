@@ -16,4 +16,8 @@ export class AuthService {
   onGetUserData() {
     return this.socket.fromEvent("userData");
   }
+
+  logout(userID: string) {
+    this.socket.emit("logout", {"userID": userID, "token": localStorage.getItem("token")})
+  }
 }

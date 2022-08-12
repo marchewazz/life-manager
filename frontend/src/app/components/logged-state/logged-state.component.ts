@@ -38,6 +38,7 @@ export class LoggedStateComponent implements OnInit {
   }
 
   logout() {
+    this.as.logout(this.userData._id)
     localStorage.setItem("token", "")
   }
 
