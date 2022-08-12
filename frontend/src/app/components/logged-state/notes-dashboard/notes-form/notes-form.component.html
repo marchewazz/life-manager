@@ -1,15 +1,15 @@
-<div class="grid grid-flow-row">
+<div class="grid grid-flow-row gap-y-2">
     <input type="text"
     class="input-style"
     id="noteTitle" 
     [formControl]="titleControl" 
-    placeholder="title">
+    placeholder="Title">
     <input type="text" 
     class="input-style"
     [formControl]="descriptionControl" 
     id="noteDescription" 
-    placeholder="description">
-    <div class="flex justify-evenly">
+    placeholder="Description">
+    <div class="flex justify-evenly items-center place-self-stretch">
         <span *ngFor="let color of notesColors">
             <input class="peer hidden" 
             type="radio" 
@@ -27,7 +27,7 @@
         {{ info }}
     </p>
     <div class="grid grid-flow-col place-items-center">
-        <button class="red-button px-14 py-4" 
+        <button class="red-button px-7 py-2" 
         id="noteClearForm"
         (click)="clearForm()">
             <svg xmlns="http://www.w3.org/2000/svg" 
@@ -42,7 +42,7 @@
                 />
             </svg>
         </button>
-        <button class="green-button px-14 py-4" 
+        <button class="green-button px-7 py-2" 
         id="noteSubmitForm"
         (click)="sendNote()">
             <svg xmlns="http://www.w3.org/2000/svg" 

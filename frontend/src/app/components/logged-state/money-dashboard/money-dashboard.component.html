@@ -1,4 +1,4 @@
-<div class="grid grid-flow-col">
+<div class="grid grid-flow-col gap-x-10">
     <div>
         <p class="font-bold">
             Your balance: 
@@ -16,6 +16,7 @@
             </ng-container>
             <ng-container *ngIf="editBalance">
                 <input *ngIf="editBalance"
+                class="input-style w-20"
                 type="text"
                 [value]="userData.balance"
                 [formControl]="balanceControl"> $
@@ -51,7 +52,7 @@
             </ng-container>
         </p>
         <div *ngIf="!userData.dates.money.length">
-            <p>
+            <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
                 No operations saved
             </p>
         </div>
@@ -65,7 +66,7 @@
                     [id]="tab"
                     [value]="tab"
                     [formControl]="operationsTabControl">
-                    <label class="border-b border-light-blue text-light-blue
+                    <label class="border-b border-light-blue text-dark-gray
                     peer-checked:border-main-red peer-checked:text-main-red" 
                     [for]="tab">
                         {{ tab.toUpperCase() }}
@@ -79,7 +80,7 @@
                 </ng-container>
                 <ng-container *ngIf="operationsTabControl.value=='past'">
                     <ng-container *ngIf="!pastAndUpcomingOperations.past.length">
-                        <p>
+                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
                             No past operations
                         </p>
                     </ng-container>
@@ -90,8 +91,8 @@
                 </ng-container>
                 <ng-container *ngIf="operationsTabControl.value=='upcoming'">
                     <ng-container *ngIf="!pastAndUpcomingOperations.upcoming.length">
-                        <p>
-                            No past operations
+                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                            No upcoming operations
                         </p>
                     </ng-container>
                     <ng-container *ngIf="pastAndUpcomingOperations.upcoming.length">

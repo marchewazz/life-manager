@@ -1,7 +1,7 @@
-<div class="grid grid-flow-col">
-    <div class="grid grid-flow-row gap-y-3 divide-y divide-light-gray divide-dashed">
+<div class="grid grid-flow-col gap-x-10">
+    <div>
         <ng-container *ngIf="!userData.dates.dates.length">
-            <p>
+            <p class="font-bold text-2xl">
                 No dates saved
             </p>
         </ng-container>
@@ -15,42 +15,44 @@
                     [id]="tab"
                     [value]="tab"
                     [formControl]="datesTabControl">
-                    <label class="border-b border-light-blue text-light-blue
+                    <label class="border-b border-light-blue text-dark-blue
                     peer-checked:border-main-red peer-checked:text-main-red" 
                     [for]="tab">
-                        {{ tab }}
+                        {{ tab.toUpperCase() }}
                     </label>
                 </div>
             </div>
-            <ng-container *ngIf="datesTabControl.value==''">
-                <ng-container *ngFor="let date of userData.dates.dates">
-                    <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
-                </ng-container>
-            </ng-container>
-            <ng-container *ngIf="datesTabControl.value=='past'">
-                <ng-container *ngIf="!pastAndUpcomingDates.past.length">
-                    <p>
-                        No past dates
-                    </p>
-                </ng-container>
-                <ng-container *ngIf="pastAndUpcomingDates.past.length">
-                    <ng-container *ngFor="let date of pastAndUpcomingDates.past">
+            <div class="grid grid-flow-row">
+                <ng-container *ngIf="datesTabControl.value==''">
+                    <ng-container *ngFor="let date of userData.dates.dates">
                         <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
                     </ng-container>
                 </ng-container>
-            </ng-container>
-            <ng-container *ngIf="datesTabControl.value=='upcoming'">
-                <ng-container *ngIf="!pastAndUpcomingDates.upcoming.length">
-                    <p>
-                        No upcoming dates
-                    </p>
-                </ng-container>
-                <ng-container *ngIf="pastAndUpcomingDates.upcoming.length">
-                    <ng-container *ngFor="let date of pastAndUpcomingDates.upcoming">
-                        <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                <ng-container *ngIf="datesTabControl.value=='past'">
+                    <ng-container *ngIf="!pastAndUpcomingDates.past.length">
+                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                            No past dates
+                        </p>
+                    </ng-container>
+                    <ng-container *ngIf="pastAndUpcomingDates.past.length">
+                        <ng-container *ngFor="let date of pastAndUpcomingDates.past">
+                            <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                        </ng-container>
                     </ng-container>
                 </ng-container>
-            </ng-container>
+                <ng-container *ngIf="datesTabControl.value=='upcoming'">
+                    <ng-container *ngIf="!pastAndUpcomingDates.upcoming.length">
+                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                            No upcoming dates
+                        </p>
+                    </ng-container>
+                    <ng-container *ngIf="pastAndUpcomingDates.upcoming.length">
+                        <ng-container *ngFor="let date of pastAndUpcomingDates.upcoming">
+                            <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </div>
         </ng-container>
     </div>
     <app-dates-form [userData]="userData"></app-dates-form>

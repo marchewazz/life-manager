@@ -8,7 +8,11 @@
         peer-checked:border-dark-gray peer-checked:bg-main-red peer-checked:text-light-blue
     }
     .tab-button {
-        @apply grid place-items-center bg-light-blue peer-checked:bg-main-red peer-checked:text-light-gray
+        @apply grid place-items-center bg-light-blue text-dark-gray
+        transition-all duration-500
+        peer-checked:bg-main-red peer-checked:text-light-gray
+        hover:bg-dark-gray hover:text-light-blue
+        
     }
     .red-button {
         @apply grid place-items-center text-white bg-red-700 border-2 border-black 
@@ -19,11 +23,15 @@
         hover:bg-white hover:text-green-700
     }
     .note-color {
-        @apply border-2 border-transparent px-5 rounded-full
+        @apply border-2 border-transparent px-3 rounded-full
         peer-checked:border-blue-800
     }
     .input-style {
         @apply bg-transparent  border-0 border-b-2 border-dark-gray text-center
         focus:ring-0 
     }
+}
+
+label {
+    cursor: pointer;
 }
