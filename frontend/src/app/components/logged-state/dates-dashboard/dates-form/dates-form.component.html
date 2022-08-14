@@ -13,11 +13,11 @@
     min="2010-01-01T00:00"
     max="2024-12-31T23:59"
     [formControl]="dateTimeControl">
-    <p>
+    <p [ngClass]="{'error-info': info}">
         {{ info }}
     </p>
     <div class="grid grid-flow-col place-items-center">
-        <button class="red-button px-14 py-4"
+        <button class="red-button px-7 py-2"
         (click)="clearForm()">
             <svg xmlns="http://www.w3.org/2000/svg" 
             class="h-6 w-6" 
@@ -31,7 +31,7 @@
                 />
             </svg>
         </button>
-        <button class="green-button px-14 py-4"
+        <button class="green-button px-7 py-2"
         (click)="saveDate()">
             <svg xmlns="http://www.w3.org/2000/svg" 
             class="h-6 w-6" 

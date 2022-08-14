@@ -1,5 +1,5 @@
 <div class="grid grid-flow-col gap-x-10">
-    <div>
+    <div [ngClass]="{'grid grid-flow-row': !userData.dates.money.length}">
         <p class="font-bold">
             Your balance: 
             <ng-container *ngIf="!editBalance">
@@ -51,11 +51,11 @@
                 </div>
             </ng-container>
         </p>
-        <div *ngIf="!userData.dates.money.length">
-            <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+        <ng-container *ngIf="!userData.dates.money.length">
+            <p class="font-bold text-2xl text-center">
                 No operations saved
             </p>
-        </div>
+        </ng-container>
         <div *ngIf="userData.dates.money.length">
             <div class="grid grid-flow-col place-items-stretch">
                 <div *ngFor="let tab of operationsTabs"

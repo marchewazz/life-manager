@@ -23,7 +23,7 @@
             </label>
         </span>
     </div>
-    <p>
+    <p [ngClass]="{'error-info': info}">
         {{ info }}
     </p>
     <div class="grid grid-flow-col place-items-center">

@@ -4,11 +4,13 @@
 
 @layer components {
     .calendar-button {
-        @apply grid border-2 border-main-red bg-light-blue text-dark-gray p-2
+        @apply grid border-2 border-main-red bg-light-blue text-dark-gray py-2 px-3 rounded-md
+        transition-all duration-300
+        hover:bg-[#A9C6CC] hover:text-light-blue
         peer-checked:border-dark-gray peer-checked:bg-main-red peer-checked:text-light-blue
     }
     .tab-button {
-        @apply grid place-items-center bg-light-blue text-dark-gray
+        @apply grid place-items-center bg-light-blue text-dark-gray text-3xl font-light font-mono
         transition-all duration-500
         peer-checked:bg-main-red peer-checked:text-light-gray
         hover:bg-dark-gray hover:text-light-blue
@@ -16,22 +18,33 @@
     }
     .red-button {
         @apply grid place-items-center text-white bg-red-700 border-2 border-black 
+        transition-all duration-500
         hover:bg-white hover:text-red-700
     }
     .green-button {
         @apply grid place-items-center text-white bg-green-700 border-2 border-black 
+        transition-all duration-500
         hover:bg-white hover:text-green-700
     }
     .note-color {
         @apply border-2 border-transparent px-3 rounded-full
+        transition-all duration-300
         peer-checked:border-blue-800
     }
     .input-style {
         @apply bg-transparent  border-0 border-b-2 border-dark-gray text-center
+        transition-all duration-300
         focus:ring-0 
+    }
+    .error-info {
+        @apply border border-red-700 bg-red-200 text-center font-semibold py-2
     }
 }
 
 label {
     cursor: pointer;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
