@@ -21,6 +21,7 @@ import { NotesFormComponent } from './components/logged-state/notes-dashboard/no
 import { MoneyOperationComponent } from './components/logged-state/money-dashboard/money-operation/money-operation.component';
 import { DateDisplayComponent } from './components/logged-state/dates-dashboard/date-display/date-display.component';
 import { InfoPopupComponent } from './components/logged-state/info-popup/info-popup.component';
+import { UpcomingEventsComponent } from './components/logged-state/calendar-dashboard/upcoming-events/upcoming-events.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -41,7 +42,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     NotesFormComponent,
     MoneyOperationComponent,
     DateDisplayComponent,
-    InfoPopupComponent
+    InfoPopupComponent,
+    UpcomingEventsComponent
   ],
   imports: [
     BrowserModule,

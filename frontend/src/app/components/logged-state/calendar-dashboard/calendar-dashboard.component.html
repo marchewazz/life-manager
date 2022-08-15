@@ -43,27 +43,43 @@
             </div>
         </div>
         <div class="grid grid-flow-row auto-rows-min col-span-3">
-            <div>
+            <div class="grid">
                 <div class="grid grid-flow-col">
-                    <p class="grid place-items-center">
-                        ADD
-                    </p>
-                    <select class="input-style"
+                    <div *ngFor="let tab of rightSideTabs"
+                    class="grid grid-flow-col place-items-stretch text-center">
+                    <input class="hidden peer"
+                    type="radio" 
+                    name="tabs" 
+                    [id]="tab"
+                    [value]="tab"
+                    [formControl]="rightSideTabsControl">
+                    <label class="border-b border-light-blue text-dark-blue
+                    peer-checked:border-main-red peer-checked:text-main-red" 
+                    [for]="tab">
+                        {{ tab.toUpperCase() }}
+                    </label>
+                </div>
+                </div>
+                <ng-container *ngIf="rightSideTabsControl.value=='add'">
+                    <select class="input-style justify-self-stretch"
                     [formControl]="formTabControl">
                         <option *ngFor="let tab of formTabs"
                         [value]="tab">
                             {{ tab.toUpperCase() }}
                         </option>
                     </select>
-                </div>
-                <ng-container *ngIf="formTabControl.value=='date'">
-                    <app-dates-form [selectedDate]="selectedDate" [userData]="userData"></app-dates-form>
+                    <ng-container *ngIf="formTabControl.value=='date'">
+                        <app-dates-form [selectedDate]="selectedDate" [userData]="userData"></app-dates-form>
+                    </ng-container>
+                    <ng-container *ngIf="formTabControl.value=='money'">
+                        <app-money-form [selectedDate]="selectedDate" [userData]="userData"></app-money-form>
+                    </ng-container>
+                    <ng-container *ngIf="formTabControl.value=='note'">
+                        <app-notes-form [userData]="userData"></app-notes-form>
+                    </ng-container>
                 </ng-container>
-                <ng-container *ngIf="formTabControl.value=='money'">
-                    <app-money-form [selectedDate]="selectedDate" [userData]="userData"></app-money-form>
-                </ng-container>
-                <ng-container *ngIf="formTabControl.value=='note'">
-                    <app-notes-form [userData]="userData"></app-notes-form>
+                <ng-container *ngIf="rightSideTabsControl.value=='upcoming'">
+                    <app-upcoming-events [userData]="userData"></app-upcoming-events>
                 </ng-container>
             </div>
             <div class="grid grid-flow-row place-items-start">

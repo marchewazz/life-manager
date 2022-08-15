@@ -24,6 +24,9 @@ export class CalendarDashboardComponent implements OnInit {
   formTabs: string[] = ["date", "money", "note"];
   formTabControl: FormControl = new FormControl(this.formTabs[0]);
 
+  rightSideTabs: string[] = ["add", "upcoming"];
+  rightSideTabsControl: FormControl = new FormControl(this.rightSideTabs[0]);
+
   selectedDate: Date = new Date(this.yearsControl.value, this.monthsControl.value - 1, this.daysControl.value);
   isDateLater: boolean = false;
   estimatedBalance: number = this.userData.balance;

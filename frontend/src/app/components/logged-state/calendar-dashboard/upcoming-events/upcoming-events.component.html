@@ -1,0 +1,12 @@
+<div>
+    <ng-container *ngIf="upcomingEvents.length">
+        <ng-container *ngFor="let date of upcomingEvents">
+            <ng-container *ngIf="isOperation(date)">
+                <app-money-operation [operationData]="date" [userData]="userData"></app-money-operation>
+            </ng-container>
+            <ng-container *ngIf="!isOperation(date)">
+                <app-date-display [dateData]="date"></app-date-display>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>
