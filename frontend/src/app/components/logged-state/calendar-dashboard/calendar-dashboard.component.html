@@ -16,7 +16,8 @@
                 {{ year }}
             </option>
         </select>
-        <button (click)="goToToday()">
+        <button class="today-button"
+        (click)="goToToday()">
             GO TO TODAY
         </button>
     </div>
@@ -45,7 +46,7 @@
                 </ng-container>
             </div>
         </div>
-        <div class="grid grid-flow-row auto-rows-min col-span-3">
+        <div class="grid grid-flow-row auto-rows-min gap-y-2 col-span-3 divide-y divide-black">
             <div class="grid">
                 <div class="grid grid-flow-col">
                     <div *ngFor="let tab of rightSideTabs"
@@ -87,30 +88,31 @@
             </div>
             <div class="grid grid-flow-row place-items-start">
                 <ng-container *ngIf="isDateLater">
-                    <p>
+                    <p class="text-lg">
                         Predicted balance:
-                        <span
+                        <span class="font-bold"
                         [ngClass]="{'text-red-700': estimatedBalance < userData.balance, 'text-green-700': estimatedBalance > userData.balance}">
                             {{ estimatedBalance }} $
-                        </span>
-                        
+                        </span> 
                     </p>
                 </ng-container>
-                <ng-container *ngIf="!eventsOnSelectedDay.length">
-                    <p class="place-self-center text-center font-bold text-lg">
-                        Nothing saved on this day
-                    </p>
-                </ng-container>
-                <ng-container *ngIf="eventsOnSelectedDay.length">
-                    <ng-container *ngFor="let date of eventsOnSelectedDay">
-                        <ng-container *ngIf="isOperation(date)">
-                            <app-money-operation [operationData]="date" [userData]="userData"></app-money-operation>
-                        </ng-container>
-                        <ng-container *ngIf="!isOperation(date)">
-                            <app-date-display [dateData]="date"></app-date-display>
+                <div class="overflow-y-auto max-h-64 place-self-stretch">
+                    <ng-container *ngIf="!eventsOnSelectedDay.length">
+                        <p class="place-self-center text-center font-bold text-lg">
+                            Nothing saved on this day
+                        </p>
+                    </ng-container>
+                    <ng-container *ngIf="eventsOnSelectedDay.length">
+                        <ng-container *ngFor="let date of eventsOnSelectedDay">
+                            <ng-container *ngIf="isOperation(date)">
+                                <app-money-operation [operationData]="date" [userData]="userData"></app-money-operation>
+                            </ng-container>
+                            <ng-container *ngIf="!isOperation(date)">
+                                <app-date-display [dateData]="date"></app-date-display>
+                            </ng-container>
                         </ng-container>
                     </ng-container>
-                </ng-container>
+                </div>
             </div>
         </div>
     </div>

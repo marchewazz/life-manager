@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 
 import { AccountsService } from 'src/app/services/accountsService/accounts.service';
 
+import { testEmail } from 'src/app/utilities';
+
 @Component({
   selector: 'app-profile-dashboard',
   templateUrl: './profile-dashboard.component.html',
@@ -28,7 +30,9 @@ export class ProfileDashboardComponent implements OnInit {
 
   submitData(): void {
     if (!this.nameControl.value || !this.emailControl.value) {
-      console.log(`error`);
+      this.info = "Pass all data";
+    } else if (!testEmail(this.emailControl.value)) {
+      this.info = "Wrong email format";
     } else {
       if (this.nameControl.value != this.userData.accountName || this.emailControl.value != this.userData.accountEmail) {
         const data = {
@@ -41,6 +45,9 @@ export class ProfileDashboardComponent implements OnInit {
       }
       this.editData = false;
     }
+    setTimeout(() => {
+      this.info = "";
+    }, 5000);
   }
 
 }

@@ -17,12 +17,12 @@
         
     }
     .red-button {
-        @apply grid place-items-center text-white bg-red-700 border-2 border-black 
+        @apply grid place-items-center text-white bg-red-700 border-2 border-black rounded-md
         transition-all duration-500
         hover:bg-white hover:text-red-700
     }
     .green-button {
-        @apply grid place-items-center text-white bg-green-700 border-2 border-black 
+        @apply grid place-items-center text-white bg-green-700 border-2 border-black rounded-md
         transition-all duration-500
         hover:bg-white hover:text-green-700
     }
@@ -37,7 +37,12 @@
         focus:ring-0 
     }
     .error-info {
-        @apply border border-red-700 bg-red-200 text-center font-semibold py-2
+        @apply border border-red-700 bg-red-200 text-center font-semibold py-2 rounded-md
+    }
+    .today-button {
+        @apply border-2 border-black rounded-xl px-2 font-semibold
+        transition-all duration-300
+        hover:bg-gray-400
     }
 }
 

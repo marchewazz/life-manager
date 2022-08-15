@@ -1,6 +1,8 @@
-<div class="border-l-4 grid"
+<div class="border-l-4 grid pl-2"
 [ngClass]="{'border-red-700': operationData.direction=='outgoing', 'border-green-700': operationData.direction=='ingoing'}">
-    {{ operationData.title }}
+    <p class="font-bold text-lg">
+        {{ operationData.title }}
+    </p>
     <p *ngIf="operationData.secondSide">
         <span *ngIf="operationData.direction=='ingoing'">
             From: {{ operationData.secondSide }}
