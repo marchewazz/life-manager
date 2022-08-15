@@ -12,9 +12,9 @@ export class CalendarDashboardComponent implements OnInit {
 
   @Input() userData: any = {};
   
-  daysControl: FormControl = new FormControl(new Date().getDate().toString());
-  monthsControl: FormControl = new FormControl((new Date().getMonth() + 1).toString());
-  yearsControl: FormControl = new FormControl(new Date().getFullYear().toString());
+  daysControl: FormControl = new FormControl();
+  monthsControl: FormControl = new FormControl();
+  yearsControl: FormControl = new FormControl();
 
   monthsNames: string[] = monthsNames;
   daysNames: string[] = daysNames;
@@ -36,9 +36,8 @@ export class CalendarDashboardComponent implements OnInit {
     for(let i = 2010; i<= 2024; i++) this.years.push(i.toString())
   }
 
-  ngOnInit(): void {        
-    this.getNumberOfDays();
-    this.onChangeDate()
+  ngOnInit(): void {    
+    this.goToToday();   
   }
 
   getNumberOfDays(): void {
@@ -90,6 +89,14 @@ export class CalendarDashboardComponent implements OnInit {
   isOperation(date: any) {
     if ("amount" in date) return true
     else return false
+  }
+
+  goToToday() {
+    this.daysControl.setValue(new Date().getDate().toString()); 
+    this.monthsControl.setValue((new Date().getMonth() + 1).toString()); 
+    this.yearsControl.setValue(new Date().getFullYear().toString()); 
+    this.getNumberOfDays();
+    this.onChangeDate();
   }
 
 }
