@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+import { AuthService } from 'src/app/services/authService/auth.service';
+
 import { monthsNames, daysNames, sortDatesArray } from 'src/app/utilities';
 
 @Component({
@@ -32,12 +34,16 @@ export class CalendarDashboardComponent implements OnInit {
   estimatedBalance: number = this.userData.balance;
   eventsOnSelectedDay: any[] = [];
 
-  constructor() {
+  constructor(private as: AuthService) {
     for(let i = 2010; i<= 2024; i++) this.years.push(i.toString())
   }
 
   ngOnInit(): void {    
-    this.goToToday();   
+    this.goToToday();  
+    this.as.onGetUserData().subscribe((res: any) => {
+      this.userData = res.userData;
+      this.onChangeDate();
+    }) 
   }
 
   getNumberOfDays(): void {
