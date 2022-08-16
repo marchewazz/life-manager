@@ -104,5 +104,4 @@ export class CalendarDashboardComponent implements OnInit {
     this.getNumberOfDays();
     this.onChangeDate();
   }
-
 }

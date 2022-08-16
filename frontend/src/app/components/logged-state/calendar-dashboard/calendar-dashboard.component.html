@@ -53,7 +53,7 @@
                     class="grid grid-flow-col place-items-stretch text-center">
                     <input class="hidden peer"
                     type="radio" 
-                    name="tabs" 
+                    name="tabs"
                     [id]="tab"
                     [value]="tab"
                     [formControl]="rightSideTabsControl">
@@ -108,7 +108,7 @@
                                 <app-money-operation [operationData]="date" [userData]="userData"></app-money-operation>
                             </ng-container>
                             <ng-container *ngIf="!isOperation(date)">
-                                <app-date-display [dateData]="date"></app-date-display>
+                                <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
                             </ng-container>
                         </ng-container>
                     </ng-container>
