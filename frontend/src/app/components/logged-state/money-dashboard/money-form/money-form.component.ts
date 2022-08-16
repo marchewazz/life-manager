@@ -18,7 +18,7 @@ export class MoneyFormComponent implements OnInit {
   dateTimeControl: FormControl = new FormControl(getDateTime(this.selectedDate));
   directionControl: FormControl = new FormControl("ingoing");
   secondSideControl: FormControl = new FormControl("");
-  amountControl: FormControl = new FormControl("0.00");
+  amountControl: FormControl = new FormControl((Math.round(0 * 100) / 100).toFixed(2));
 
   info: string = "";
 
@@ -27,11 +27,11 @@ export class MoneyFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveOperation(): void {    
+  saveOperation(): void {   
     if(!this.titleControl.value || !this.amountControl.value) {
       this.info = "Pass necessary data"
     } else {
-      this.amountControl.setValue(this.amountControl.value.toFixed(2))
+      this.amountControl.setValue((Math.round(this.amountControl.value * 100) / 100).toFixed(2));
       this.ms.saveOperation({
         "userID": this.userData._id, 
         "token": localStorage.getItem("token"), 
@@ -51,7 +51,7 @@ export class MoneyFormComponent implements OnInit {
     this.titleControl.setValue("");
     this.dateTimeControl.setValue(getDateTime(this.selectedDate));
     this.secondSideControl.setValue("");
-    this.amountControl.setValue("0.00");
+    this.amountControl.setValue((Math.round(0 * 100) / 100).toFixed(2));
   }
 
 }
