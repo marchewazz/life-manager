@@ -55,6 +55,11 @@ io.on("connection", (socket: any) => {
     await socket.emit("sendInfo", await nc.deleteNode(data))
     await socket.emit("userData", await ac.getUserData(data.token))
   })
+  socket.on("editNote",async (data: any) => {
+    await socket.emit("sendInfo", await nc.editNote(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
+  })
+  // BALANCE
   socket.on("updateBalance", async (data: any) => {
     await socket.emit("sendInfo", await mc.updateBalance(data))
     await socket.emit("userData", await ac.getUserData(data.token))

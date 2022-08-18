@@ -16,4 +16,8 @@ export class NotesService {
   deleteNote(note: any) {
     this.socket.emit("deleteNote", note)
   }
+
+  editNote(note: any) {
+    this.socket.emit("editNote", note)
+  }
 }
