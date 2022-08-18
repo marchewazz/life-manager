@@ -86,7 +86,7 @@
                     <app-upcoming-events [userData]="userData"></app-upcoming-events>
                 </ng-container>
             </div>
-            <div class="grid grid-flow-row place-items-start">
+            <div class="grid grid-flow-row place-items-start divide-y divide-light-gray divide-dashed">
                 <ng-container *ngIf="isDateLater">
                     <p class="text-lg">
                         Predicted balance:
@@ -96,7 +96,7 @@
                         </span> 
                     </p>
                 </ng-container>
-                <div class="overflow-y-auto max-h-64 place-self-stretch">
+                <div class="grid overflow-y-auto max-h-64 gap-y-3 divide-y divide-light-gray divide-dashed place-self-stretch">
                     <ng-container *ngIf="!eventsOnSelectedDay.length">
                         <p class="place-self-center text-center font-bold text-lg">
                             Nothing saved on this day
