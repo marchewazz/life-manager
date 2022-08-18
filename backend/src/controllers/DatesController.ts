@@ -36,6 +36,19 @@ class DatesController {
         })
         return {"message": "Date deleted!"}
     }
+
+    public async editDate(data: any) {
+        const collection = MongoDBClient.db("life-manager").collection("accounts");
+        await collection.updateOne({"_id": new ObjectId(data.userID), "dates.dates.dateID": data.dateID}, {
+            $set: {
+                "dates.dates.$.title": data.title,
+                "dates.dates.$.description": data.description,
+                "dates.dates.$.dateTime": data.dateTime,
+            }
+        })
+
+        return {"message": "Date edited!"}
+    }
 }
 
 export default DatesController;

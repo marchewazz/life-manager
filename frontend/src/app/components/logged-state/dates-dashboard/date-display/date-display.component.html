@@ -1,15 +1,75 @@
 <div class="grid grid-flow-row">
-    <p class="font-bold text-lg">
-        {{ dateData.title }}
-    </p>
-    <p *ngIf="dateData.description">
-        {{ dateData.description }}
-    </p>
-    <p class="grid grid-flow-col">
-        <span>
+    <ng-container *ngIf="!editData">
+        <p class="font-bold text-lg">
+            {{ dateData.title }}
+        </p>
+        <p *ngIf="dateData.description">
+            {{ dateData.description }}
+        </p>
+        <p>
             {{ dateData.dateTime }}
-        </span>
-        <button class="place-self-end" 
+        </p>
+    </ng-container>
+    <ng-container *ngIf="editData">
+        <input class="input-style"
+        type="text"
+        [formControl]="titleControl">
+        <input class="input-style"
+        type="text"
+        [formControl]="descriptionControl">
+        <input type="datetime-local" 
+        class="input-style"
+        (keydown)="$event.preventDefault()"
+        min="2010-01-01T00:00"
+        max="2024-12-31T23:59"
+        [formControl]="dateTimeControl">
+    </ng-container>
+    <div class="flex justify-evenly items-center place-self-end justify-self-auto">
+        <button *ngIf="editData"
+        class="red-button px-3.5 py-1"
+        (click)="editData=false">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            stroke-width="2">
+                <path stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M10 19l-7-7m0 0l7-7m-7 7h18" 
+                />
+            </svg>
+        </button>
+        <button *ngIf="editData"
+        class="green-button px-3.5 py-1"
+        (click)="editDate()">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            stroke-width="2">
+                <path stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M5 13l4 4L19 7" 
+                />
+            </svg>
+        </button>
+        <button *ngIf="!editData"
+        (click)="editData=true">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            stroke-width="2">
+                <path stroke-linecap="round" 
+                stroke-linejoin="round" 
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" 
+                />
+            </svg>
+        </button>
+        <button 
         (click)="deleteDate(dateData.dateID)">
         <svg xmlns="http://www.w3.org/2000/svg" 
         class="h-6 w-6" 
@@ -23,5 +83,5 @@
             />
           </svg>
         </button>
-    </p>
+    </div>
 </div>

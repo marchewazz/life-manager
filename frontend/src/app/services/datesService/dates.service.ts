@@ -17,4 +17,8 @@ export class DatesService {
     this.socket.emit("deleteDate", date);
   }
 
+  editDate(date: any) {
+    this.socket.emit("editDate", date)
+  }
+
 }

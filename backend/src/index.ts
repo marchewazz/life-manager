@@ -82,6 +82,10 @@ io.on("connection", (socket: any) => {
     await socket.emit("sendInfo", await dc.deleteDate(data))
     await socket.emit("userData", await ac.getUserData(data.token))
   })
+  socket.on("editDate",async (data: any) => {
+    await socket.emit("sendInfo", await dc.editDate(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
+  })
 })
 
 setInterval(() => {
