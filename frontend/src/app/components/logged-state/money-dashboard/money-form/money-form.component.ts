@@ -31,7 +31,7 @@ export class MoneyFormComponent implements OnInit {
     if(!this.titleControl.value || !this.amountControl.value) {
       this.info = "Pass necessary data"
     } else {
-      this.amountControl.setValue((Math.round(this.amountControl.value * 100) / 100).toFixed(2));
+      this.amountControl.setValue((Math.round(Math.abs(this.amountControl.value) * 100) / 100).toFixed(2));
       this.ms.saveOperation({
         "userID": this.userData._id, 
         "token": localStorage.getItem("token"), 

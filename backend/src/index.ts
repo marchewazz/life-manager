@@ -73,6 +73,10 @@ io.on("connection", (socket: any) => {
     await socket.emit("sendInfo", await mc.deleteOperation(data))
     await socket.emit("userData", await ac.getUserData(data.token))
   })
+  socket.on("editOperation",async (data: any) => {
+    await socket.emit("sendInfo", await mc.editOperation(data))
+    await socket.emit("userData", await ac.getUserData(data.token))
+  })
   // DATES
   socket.on("saveDate",async (data: any) => {
     await socket.emit("sendInfo", await dc.saveDate(data))

@@ -49,6 +49,23 @@ class MoneyController {
 
         return {"message": "Operation deleted!"}
     }
+
+    public async editOperation(data: any) {
+        console.log(data);
+        
+        const collection = MongoDBClient.db("life-manager").collection("accounts");
+        await collection.updateOne({"_id": new ObjectId(data.userID), "dates.money.operationID": data.operationID}, {
+            $set: {
+                "dates.money.$.title": data.title,
+                "dates.money.$.dateTime": data.dateTime,
+                "dates.money.$.direction": data.direction,
+                "dates.money.$.secondSide": data.secondSide,
+                "dates.money.$.amount": data.amount,
+            }
+        })
+
+        return {"message": "Operation edited!"}
+    }
 }
 
 export default MoneyController;

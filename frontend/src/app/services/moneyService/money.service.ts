@@ -21,4 +21,7 @@ export class MoneyService {
     this.socket.emit("deleteOperation", operation)
   }
 
+  editOperation(operation: any) {
+    this.socket.emit("editOperation", operation)
+  }
 } 
