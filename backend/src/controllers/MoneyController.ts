@@ -51,8 +51,6 @@ class MoneyController {
     }
 
     public async editOperation(data: any) {
-        console.log(data);
-        
         const collection = MongoDBClient.db("life-manager").collection("accounts");
         await collection.updateOne({"_id": new ObjectId(data.userID), "dates.money.operationID": data.operationID}, {
             $set: {
