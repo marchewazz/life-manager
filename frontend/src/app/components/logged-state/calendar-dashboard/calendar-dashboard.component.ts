@@ -35,7 +35,7 @@ export class CalendarDashboardComponent implements OnInit {
   eventsOnSelectedDay: any[] = [];
 
   constructor(private as: AuthService) {
-    for(let i = 2010; i<= 2024; i++) this.years.push(i.toString())
+    for(let i = 2010; i<= 2026; i++) this.years.push(i.toString())
   }
 
   ngOnInit(): void {    

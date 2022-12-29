@@ -13,7 +13,15 @@ class AccountsController {
         const collection = MongoDBClient.db("life-manager").collection("accounts");
         const accountsWithPassedEmail = await collection.find({"accountEmail": userData.accountEmail}).toArray();
         if (!accountsWithPassedEmail.length) {
-            await collection.insertOne(Object.assign(userData, {"tokens": []}));
+            await collection.insertOne(Object.assign(userData, {
+                "tokens": [], 
+                "balance": 0, 
+                "dates": {
+                    "money": [],
+                    "dates": []
+                },
+                "notes": []
+            }));
             res.status(200).send({"message": "You have been registered"})
         } else {
             res.status(200).send({"message": "You already have account"})
