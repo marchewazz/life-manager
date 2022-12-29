@@ -92,15 +92,37 @@ export class CalendarDashboardComponent implements OnInit {
     }
   }
 
-  isOperation(date: any) {
+  isOperation(date: any): boolean {
     if ("amount" in date) return true
     else return false
   }
 
-  goToToday() {
+  goToToday(): void {
     this.daysControl.setValue(new Date().getDate().toString()); 
     this.monthsControl.setValue((new Date().getMonth() + 1).toString()); 
     this.yearsControl.setValue(new Date().getFullYear().toString()); 
+    this.getNumberOfDays();
+    this.onChangeDate();
+  }
+
+  moveByAmountOfDays(direction: string): void {
+    let newDate;
+    if (direction === "back") {
+      newDate = new Date(this.yearsControl.value, this.monthsControl.value - 1, this.daysControl.value);
+      newDate.setDate(newDate.getDate() - 30)
+    } else {
+      newDate = new Date(this.yearsControl.value, this.monthsControl.value - 1, this.daysControl.value);
+      newDate.setDate(newDate.getDate() + 30)
+    }
+    if (newDate > new Date("2026-12-31T23:59:59")) {
+      newDate = new Date("2026-12-31T23:59:59")
+    } 
+    if (newDate < new Date("2010-01-01T00:00:00")) {
+      newDate = new Date("2010-01-01T00:00:00")
+    }
+    this.daysControl.setValue(newDate.getDate().toString()); 
+    this.monthsControl.setValue((newDate.getMonth() + 1).toString()); 
+    this.yearsControl.setValue(newDate.getFullYear().toString()); 
     this.getNumberOfDays();
     this.onChangeDate();
   }
