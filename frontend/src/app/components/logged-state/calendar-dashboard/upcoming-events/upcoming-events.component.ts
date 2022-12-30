@@ -4,6 +4,9 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 
 import { sortDatesArray } from 'src/app/utilities';
 
+import moment from 'moment';
+import 'moment-precise-range-plugin';
+
 @Component({
   selector: 'app-upcoming-events',
   templateUrl: './upcoming-events.component.html',
@@ -17,7 +20,7 @@ export class UpcomingEventsComponent implements OnInit {
 
   constructor(private as: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
     this.updateUpcoming();
     this.as.onGetUserData().subscribe((res: any) => {
       this.userData = res.userData;
@@ -30,7 +33,7 @@ export class UpcomingEventsComponent implements OnInit {
     // THIS LINE CONCATS ARRAY OF DATES AND ARRAY OF MONEY OPERATIONS
     // THEN IT CHOOSES ONLY FUTURE
     // AFTER IT GETS FIRST THREE 
-    console.log(this.upcomingEvents);
+    // console.log(this.upcomingEvents);
   }
 
   isOperation(date: any) {

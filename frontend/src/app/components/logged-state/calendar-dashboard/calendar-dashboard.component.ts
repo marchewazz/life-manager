@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 
 import { monthsNames, daysNames, sortDatesArray } from 'src/app/utilities';
+import { MoneyFormComponent } from '../money-dashboard/money-form/money-form.component';
+
 
 @Component({
   selector: 'app-calendar-dashboard',
@@ -14,6 +16,8 @@ export class CalendarDashboardComponent implements OnInit {
 
   @Input() userData: any = {};
   
+  @ViewChild(MoneyFormComponent) MoneyForm: MoneyFormComponent | undefined;
+
   daysControl: FormControl = new FormControl();
   monthsControl: FormControl = new FormControl();
   yearsControl: FormControl = new FormControl();
@@ -90,6 +94,7 @@ export class CalendarDashboardComponent implements OnInit {
       }
       this.estimatedBalance = parseFloat(this.estimatedBalance.toFixed(2));
     }
+    this.MoneyForm?.updateDate(this.selectedDate)
   }
 
   isOperation(date: any): boolean {

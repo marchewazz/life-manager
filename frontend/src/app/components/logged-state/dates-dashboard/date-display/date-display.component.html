@@ -9,6 +9,9 @@
         <p>
             {{ dateData.dateTime }}
         </p>
+        <p *ngIf="dateData.in">
+            In: {{ dateData.in }}
+        </p>
     </ng-container>
     <ng-container *ngIf="editData">
         <input class="input-style"

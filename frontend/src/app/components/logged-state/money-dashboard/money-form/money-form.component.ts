@@ -47,6 +47,10 @@ export class MoneyFormComponent implements OnInit {
     }, 5000)
   }
 
+  updateDate(date: any) {
+    this.dateTimeControl.setValue(getDateTime(date))
+  }
+
   clearForm(): void {
     this.titleControl.setValue("");
     this.dateTimeControl.setValue(getDateTime(this.selectedDate));

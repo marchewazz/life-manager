@@ -1,3 +1,6 @@
+import moment from 'moment';
+import 'moment-precise-range-plugin';
+
 export const monthsNames: string[] = ["January", "February", "March", "April", "May", "June",
 "July", "August", "September", "October", "November", "December"];
 
@@ -34,4 +37,16 @@ export function testEmail(email: string): boolean {
 
 export function testPassword(password: string): boolean {
     return new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).test(password)
+}
+
+export function countRemainingTime(date: Date): string {
+
+    function getMomentObject(date: Date): moment.Moment {
+        return moment({ year: date.getFullYear(), month: date.getMonth(), day: date.getDate(), hours: date.getHours(), minutes: date.getMinutes(), seconds: date.getSeconds()});
+    }
+
+    const nowDate = new Date();
+    nowDate.setSeconds(0);
+    nowDate.setMilliseconds(0);
+    return moment.preciseDiff(getMomentObject(nowDate), getMomentObject(new Date(date)))
 }

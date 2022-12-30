@@ -1,14 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { timer } from 'rxjs';
 
 import { DatesService } from 'src/app/services/datesService/dates.service';
+
+import { countRemainingTime } from 'src/app/utilities';
 
 @Component({
   selector: 'app-date-display',
   templateUrl: './date-display.component.html',
   styleUrls: ['./date-display.component.scss']
 })
-export class DateDisplayComponent implements OnInit {
+export class DateDisplayComponent implements OnInit, OnDestroy {
 
   @Input() dateData: any;
   @Input() userData: any = {};
@@ -17,6 +20,8 @@ export class DateDisplayComponent implements OnInit {
   descriptionControl: FormControl = new FormControl("");
   dateTimeControl: FormControl = new FormControl("");
 
+  countdownTimer: any;
+
   editData: boolean = false;
 
   constructor(private ds: DatesService) { }
@@ -24,7 +29,47 @@ export class DateDisplayComponent implements OnInit {
   ngOnInit(): void {
     this.titleControl.setValue(this.dateData.title);
     this.descriptionControl.setValue(this.dateData.description);
-    this.dateTimeControl.setValue(this.dateData.dateTime)
+    this.dateTimeControl.setValue(this.dateData.dateTime);
+
+    let nowDate = new Date();
+    nowDate.setSeconds(0);
+    nowDate.setMilliseconds(0);
+    // FIRST OF ALL WE CLEAR SECONDS AND MILLISECONDS
+    // BECAUSE IT IS NOT AVAILABLE IN FORMS WE USE
+    if (nowDate < new Date(this.dateData.dateTime)) {
+      // ONCE DATE IN THE EVENT IS IN PAST THERE IS NO POINT TO CHECK ANYTHING
+      this.dateData["in"] = countRemainingTime(new Date(this.dateData.dateTime))
+      this.countdownTimer = this.initInterval();
+    }
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.countdownTimer)
+  }
+
+  initInterval() {
+    let nowDate = new Date();
+    nowDate.setSeconds(0);
+    nowDate.setMilliseconds(0);
+    const countdownInterval = setInterval(() => {
+      // EVERY SECOND WE CHECK IF MINUTE DIDNT CHANGE TO REFRESH THE TEXT
+      if (nowDate.getMinutes() != new Date().getMinutes()){
+        nowDate = new Date();
+        nowDate.setSeconds(0);
+        nowDate.setMilliseconds(0);
+        // CLEARING MS AGAIN
+        if (nowDate.getTime() >= new Date(this.dateData.dateTime).getTime()) {
+          // IF USER WILL STAY FOR LONG LONG TIME ON SCREEN AND TIME WILL COME
+          // WE CLEAR TEXT AND STOP INTERVAL
+          this.dateData["in"] = "";
+          clearInterval(this.countdownTimer);
+        } else {
+          // COUNT THE TIME
+          this.dateData["in"] = countRemainingTime(new Date(this.dateData.dateTime))
+        }
+      }
+    }, 1000)
+    return countdownInterval
   }
 
   deleteDate(dateID: string) {

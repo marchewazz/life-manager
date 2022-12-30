@@ -15,6 +15,9 @@
         <p *ngIf="operationData.dateTime">
             {{ operationData.dateTime }}
         </p>
+        <p *ngIf="operationData.in">
+            In: {{ operationData.in }}
+        </p>
         <p class="grid grid-flow-col">
             <span>
                 <span *ngIf="operationData.direction=='outgoing'">
