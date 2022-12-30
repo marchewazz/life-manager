@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
@@ -15,14 +15,22 @@ export class LoggedStateComponent implements OnInit {
 
   tabs: string[] = ["calendar", "dates", "notes", "money", "profile"];
   tabControl: FormControl = new FormControl(this.tabs[0])
+
   ready: boolean = false;
+
+  width: number = window.innerWidth
 
   constructor(private as: AuthService) { }
 
-  ngOnInit(){ 
+  ngOnInit(){  
     this.getUserData()
   }
-  
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.width = window.innerWidth
+  }
+
   getUserData() {
     this.as.getUserData();
     this.as.onGetUserData().subscribe((res: any) => {
