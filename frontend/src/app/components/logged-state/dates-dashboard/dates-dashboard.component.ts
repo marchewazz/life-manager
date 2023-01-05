@@ -11,11 +11,15 @@ import { getDatesPastAndUpcoming } from 'src/app/utilities';
 export class DatesDashboardComponent implements OnInit {
 
   @Input() userData: any = {};
-  
+  @Input() mobileLayout: any;
+
   datesTabControl: FormControl = new FormControl("");
   pastAndUpcomingDates: any = {};
 
   datesTabs: string[] = ["past", "upcoming"];
+
+  mobileTabs: string[] = ["Dates", "add"];
+  mobileTabControl: FormControl = new FormControl(this.mobileTabs[0]);
 
   constructor() { }
 

@@ -1,109 +1,239 @@
-<div class="grid grid-flow-col gap-x-10">
-    <div [ngClass]="{'grid grid-flow-row': !userData.dates.money.length}">
-        <p class="font-bold">
-            Your balance: 
-            <ng-container *ngIf="!editBalance">
-                {{ userData.balance }} $
-                <button (click)="editBalance=true">
-                    <svg xmlns="http://www.w3.org/2000/svg" 
-                    class="h-5 w-5" 
-                    viewBox="0 0 20 20" 
-                    fill="currentColor">
-                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" 
-                        />
-                    </svg>
-                </button>
-            </ng-container>
-            <ng-container *ngIf="editBalance">
-                <input *ngIf="editBalance"
-                class="input-style w-20"
-                type="text"
-                [value]="userData.balance"
-                [formControl]="balanceControl"> $
-                <div>
-                    <button (click)="editBalance=false; balanceControl.setValue(this.userData.balance.toString())">
-                        <svg xmlns="http://www.w3.org/2000/svg" 
-                        class="h-6 w-6" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor" 
-                        stroke-width="2">
-                            <path 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            d="M6 18L18 6M6 6l12 12" 
-                            />
-                        </svg>
-                    </button>
-                    <button (click)="sendBalance()">
-                        <svg xmlns="http://www.w3.org/2000/svg" 
-                        class="h-6 w-6" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor" 
-                        stroke-width="2">
-                            <path stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            d="M5 13l4 4L19 7" 
-                            />
-                        </svg>
-                    </button>
-                </div>
-            </ng-container>
-        </p>
-        <ng-container *ngIf="!userData.dates.money.length">
-            <p class="font-bold text-2xl text-center">
-                No operations saved
-            </p>
-        </ng-container>
-        <div *ngIf="userData.dates.money.length">
-            <div class="grid grid-flow-col place-items-stretch">
-                <div *ngFor="let tab of operationsTabs"
-                class="grid grid-flow-col place-items-stretch text-center">
-                    <input class="hidden peer"
-                    type="radio" 
-                    name="tabs" 
-                    [id]="tab"
-                    [value]="tab"
-                    [formControl]="operationsTabControl">
-                    <label class="border-b border-light-blue text-dark-gray
-                    peer-checked:border-main-red peer-checked:text-main-red" 
-                    [for]="tab">
-                        {{ tab.toUpperCase() }}
-                    </label>
-                </div>
-            </div>
-            <div class="grid grid-flow-row place-self-stretch gap-y-3 divide-y divide-light-gray divide-dashed overflow-y-auto max-h-72">
-                <ng-container *ngIf="operationsTabControl.value==''">
-                    <app-money-operation *ngFor="let operation of userData.dates.money" 
-                    [operationData]="operation" [userData]="userData"></app-money-operation>
-                </ng-container>
-                <ng-container *ngIf="operationsTabControl.value=='past'">
-                    <ng-container *ngIf="!pastAndUpcomingOperations.past.length">
-                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
-                            No past operations
-                        </p>
-                    </ng-container>
-                    <ng-container *ngIf="pastAndUpcomingOperations.past.length">
-                        <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.past" 
-                        [operationData]="operation" [userData]="userData"></app-money-operation>
-                    </ng-container>
-                </ng-container>
-                <ng-container *ngIf="operationsTabControl.value=='upcoming'">
-                    <ng-container *ngIf="!pastAndUpcomingOperations.upcoming.length">
-                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
-                            No upcoming operations
-                        </p>
-                    </ng-container>
-                    <ng-container *ngIf="pastAndUpcomingOperations.upcoming.length">
-                            <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.upcoming" 
-                            [operationData]="operation" [userData]="userData"></app-money-operation>
-                    </ng-container>
-                </ng-container>
+<div>
+    <div *ngIf="mobileLayout">
+        <div class="grid grid-flow-col place-items-stretch">
+            <div *ngFor="let tab of mobileTabs"
+            class="grid grid-flow-col place-items-stretch text-center">
+                <input class="hidden peer"
+                type="radio" 
+                name="mobileTabs" 
+                [id]="tab"
+                [value]="tab"
+                [formControl]="mobileTabControl">
+                <label class="border-b border-light-blue text-dark-gray
+                peer-checked:border-main-red peer-checked:text-main-red" 
+                [for]="tab">
+                    {{ tab.toUpperCase() }}
+                </label>
             </div>
         </div>
+        <ng-container *ngIf="mobileTabControl.value=='Money'">
+            <div [ngClass]="{'grid grid-flow-row': !userData.dates.money.length}">
+                <p class="font-bold">
+                    Your balance: 
+                    <ng-container *ngIf="!editBalance">
+                        {{ userData.balance }} $
+                        <button (click)="editBalance=true">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-5 w-5" 
+                            viewBox="0 0 20 20" 
+                            fill="currentColor">
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" 
+                                />
+                            </svg>
+                        </button>
+                    </ng-container>
+                    <ng-container *ngIf="editBalance">
+                        <input *ngIf="editBalance"
+                        class="input-style w-20"
+                        type="text"
+                        [value]="userData.balance"
+                        [formControl]="balanceControl"> $
+                        <div>
+                            <button (click)="editBalance=false; balanceControl.setValue(this.userData.balance.toString())">
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                class="h-6 w-6" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor" 
+                                stroke-width="2">
+                                    <path 
+                                    stroke-linecap="round" 
+                                    stroke-linejoin="round" 
+                                    d="M6 18L18 6M6 6l12 12" 
+                                    />
+                                </svg>
+                            </button>
+                            <button (click)="sendBalance()">
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                class="h-6 w-6" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor" 
+                                stroke-width="2">
+                                    <path stroke-linecap="round" 
+                                    stroke-linejoin="round" 
+                                    d="M5 13l4 4L19 7" 
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </ng-container>
+                </p>
+                <ng-container *ngIf="!userData.dates.money.length">
+                    <p class="font-bold text-2xl text-center">
+                        No operations saved
+                    </p>
+                </ng-container>
+                <div *ngIf="userData.dates.money.length">
+                    <div class="grid grid-flow-col place-items-stretch">
+                        <div *ngFor="let tab of operationsTabs"
+                        class="grid grid-flow-col place-items-stretch text-center">
+                            <input class="hidden peer"
+                            type="radio" 
+                            name="tabs" 
+                            [id]="tab"
+                            [value]="tab"
+                            [formControl]="operationsTabControl">
+                            <label class="border-b border-light-blue text-dark-gray
+                            peer-checked:border-main-red peer-checked:text-main-red" 
+                            [for]="tab">
+                                {{ tab.toUpperCase() }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="grid grid-flow-row place-self-stretch gap-y-3 divide-y divide-light-gray divide-dashed overflow-y-auto max-h-72">
+                        <ng-container *ngIf="operationsTabControl.value==''">
+                            <app-money-operation *ngFor="let operation of userData.dates.money" 
+                            [operationData]="operation" [userData]="userData"></app-money-operation>
+                        </ng-container>
+                        <ng-container *ngIf="operationsTabControl.value=='past'">
+                            <ng-container *ngIf="!pastAndUpcomingOperations.past.length">
+                                <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                    No past operations
+                                </p>
+                            </ng-container>
+                            <ng-container *ngIf="pastAndUpcomingOperations.past.length">
+                                <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.past" 
+                                [operationData]="operation" [userData]="userData"></app-money-operation>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="operationsTabControl.value=='upcoming'">
+                            <ng-container *ngIf="!pastAndUpcomingOperations.upcoming.length">
+                                <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                    No upcoming operations
+                                </p>
+                            </ng-container>
+                            <ng-container *ngIf="pastAndUpcomingOperations.upcoming.length">
+                                    <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.upcoming" 
+                                    [operationData]="operation" [userData]="userData"></app-money-operation>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="mobileTabControl.value=='add'">
+            <app-money-form [userData]="userData"></app-money-form>
+        </ng-container>
     </div>
-    <div>
-        <app-money-form [userData]="userData"></app-money-form>
+    <div *ngIf="!mobileLayout"
+    class="grid grid-flow-col gap-x-10">
+        <div [ngClass]="{'grid grid-flow-row': !userData.dates.money.length}">
+            <p class="font-bold">
+                Your balance: 
+                <ng-container *ngIf="!editBalance">
+                    {{ userData.balance }} $
+                    <button (click)="editBalance=true">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                        class="h-5 w-5" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor">
+                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" 
+                            />
+                        </svg>
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="editBalance">
+                    <input *ngIf="editBalance"
+                    class="input-style w-20"
+                    type="text"
+                    [value]="userData.balance"
+                    [formControl]="balanceControl"> $
+                    <div>
+                        <button (click)="editBalance=false; balanceControl.setValue(this.userData.balance.toString())">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-6 w-6" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor" 
+                            stroke-width="2">
+                                <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                d="M6 18L18 6M6 6l12 12" 
+                                />
+                            </svg>
+                        </button>
+                        <button (click)="sendBalance()">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-6 w-6" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor" 
+                            stroke-width="2">
+                                <path stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                d="M5 13l4 4L19 7" 
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </ng-container>
+            </p>
+            <ng-container *ngIf="!userData.dates.money.length">
+                <p class="font-bold text-2xl text-center">
+                    No operations saved
+                </p>
+            </ng-container>
+            <div *ngIf="userData.dates.money.length">
+                <div class="grid grid-flow-col place-items-stretch">
+                    <div *ngFor="let tab of operationsTabs"
+                    class="grid grid-flow-col place-items-stretch text-center">
+                        <input class="hidden peer"
+                        type="radio" 
+                        name="tabs" 
+                        [id]="tab"
+                        [value]="tab"
+                        [formControl]="operationsTabControl">
+                        <label class="border-b border-light-blue text-dark-gray
+                        peer-checked:border-main-red peer-checked:text-main-red" 
+                        [for]="tab">
+                            {{ tab.toUpperCase() }}
+                        </label>
+                    </div>
+                </div>
+                <div class="grid grid-flow-row place-self-stretch gap-y-3 divide-y divide-light-gray divide-dashed overflow-y-auto max-h-72">
+                    <ng-container *ngIf="operationsTabControl.value==''">
+                        <app-money-operation *ngFor="let operation of userData.dates.money" 
+                        [operationData]="operation" [userData]="userData"></app-money-operation>
+                    </ng-container>
+                    <ng-container *ngIf="operationsTabControl.value=='past'">
+                        <ng-container *ngIf="!pastAndUpcomingOperations.past.length">
+                            <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                No past operations
+                            </p>
+                        </ng-container>
+                        <ng-container *ngIf="pastAndUpcomingOperations.past.length">
+                            <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.past" 
+                            [operationData]="operation" [userData]="userData"></app-money-operation>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="operationsTabControl.value=='upcoming'">
+                        <ng-container *ngIf="!pastAndUpcomingOperations.upcoming.length">
+                            <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                No upcoming operations
+                            </p>
+                        </ng-container>
+                        <ng-container *ngIf="pastAndUpcomingOperations.upcoming.length">
+                                <app-money-operation *ngFor="let operation of pastAndUpcomingOperations.upcoming" 
+                                [operationData]="operation" [userData]="userData"></app-money-operation>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div>
+            <app-money-form [userData]="userData"></app-money-form>
+        </div>
     </div>
 </div>

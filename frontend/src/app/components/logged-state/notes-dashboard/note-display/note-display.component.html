@@ -14,9 +14,11 @@ class="grid border-2 border-black w-full h-full"
     <ng-container *ngIf="editData">
         <input class="input-style"
         type="text"
+        placeholder="Title"
         [formControl]="titleControl">
         <input class="input-style"
         type="text"
+        placeholder="Description"
         [formControl]="descriptionControl">
     </ng-container>
     <div class="flex justify-evenly items-center place-self-end justify-self-auto">

@@ -1,59 +1,142 @@
-<div class="grid grid-flow-col gap-x-10">
-    <div [ngClass]="{'grid': !userData.dates.dates.length}">
-        <ng-container *ngIf="!userData.dates.dates.length">
-            <p class="font-bold text-2xl place-self-center">
-                No dates saved
-            </p>
+<div>
+    <div *ngIf="mobileLayout">
+        <div class="grid grid-flow-col place-items-stretch">
+            <div *ngFor="let tab of mobileTabs"
+            class="grid grid-flow-col place-items-stretch text-center">
+                <input class="hidden peer"
+                type="radio" 
+                name="mobileTabs" 
+                [id]="tab"
+                [value]="tab"
+                [formControl]="mobileTabControl">
+                <label class="border-b border-light-blue text-dark-blue
+                peer-checked:border-main-red peer-checked:text-main-red" 
+                [for]="tab">
+                    {{ tab.toUpperCase() }}
+                </label>
+            </div>
+        </div>
+        <ng-container *ngIf="mobileTabControl.value=='Dates'">
+            <div [ngClass]="{'grid': !userData.dates.dates.length}">
+                <ng-container *ngIf="!userData.dates.dates.length">
+                    <p class="font-bold text-2xl place-self-center">
+                        No dates saved
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="userData.dates.dates.length">
+                    <div class="grid grid-flow-col place-items-stretch">
+                        <div *ngFor="let tab of datesTabs"
+                        class="grid grid-flow-col place-items-stretch text-center">
+                            <input class="hidden peer"
+                            type="radio" 
+                            name="tabs" 
+                            [id]="tab"
+                            [value]="tab"
+                            [formControl]="datesTabControl">
+                            <label class="border-b border-light-blue text-dark-blue
+                            peer-checked:border-main-red peer-checked:text-main-red" 
+                            [for]="tab">
+                                {{ tab.toUpperCase() }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="grid grid-flow-row overflow-y-auto max-h-72 place-self-stretch divide-y divide-light-gray divide-dashed">
+                        <ng-container *ngIf="datesTabControl.value==''">
+                            <ng-container *ngFor="let date of userData.dates.dates">
+                                <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="datesTabControl.value=='past'">
+                            <ng-container *ngIf="!pastAndUpcomingDates.past.length">
+                                <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                    No past dates
+                                </p>
+                            </ng-container>
+                            <ng-container *ngIf="pastAndUpcomingDates.past.length">
+                                <ng-container *ngFor="let date of pastAndUpcomingDates.past">
+                                    <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="datesTabControl.value=='upcoming'">
+                            <ng-container *ngIf="!pastAndUpcomingDates.upcoming.length">
+                                <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                    No upcoming dates
+                                </p>
+                            </ng-container>
+                            <ng-container *ngIf="pastAndUpcomingDates.upcoming.length">
+                                <ng-container *ngFor="let date of pastAndUpcomingDates.upcoming">
+                                    <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
         </ng-container>
-        <ng-container *ngIf="userData.dates.dates.length">
-            <div class="grid grid-flow-col place-items-stretch">
-                <div *ngFor="let tab of datesTabs"
-                class="grid grid-flow-col place-items-stretch text-center">
-                    <input class="hidden peer"
-                    type="radio" 
-                    name="tabs" 
-                    [id]="tab"
-                    [value]="tab"
-                    [formControl]="datesTabControl">
-                    <label class="border-b border-light-blue text-dark-blue
-                    peer-checked:border-main-red peer-checked:text-main-red" 
-                    [for]="tab">
-                        {{ tab.toUpperCase() }}
-                    </label>
-                </div>
-            </div>
-            <div class="grid grid-flow-row overflow-y-auto max-h-72 place-self-stretch divide-y divide-light-gray divide-dashed">
-                <ng-container *ngIf="datesTabControl.value==''">
-                    <ng-container *ngFor="let date of userData.dates.dates">
-                        <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
-                    </ng-container>
-                </ng-container>
-                <ng-container *ngIf="datesTabControl.value=='past'">
-                    <ng-container *ngIf="!pastAndUpcomingDates.past.length">
-                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
-                            No past dates
-                        </p>
-                    </ng-container>
-                    <ng-container *ngIf="pastAndUpcomingDates.past.length">
-                        <ng-container *ngFor="let date of pastAndUpcomingDates.past">
-                            <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
-                        </ng-container>
-                    </ng-container>
-                </ng-container>
-                <ng-container *ngIf="datesTabControl.value=='upcoming'">
-                    <ng-container *ngIf="!pastAndUpcomingDates.upcoming.length">
-                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
-                            No upcoming dates
-                        </p>
-                    </ng-container>
-                    <ng-container *ngIf="pastAndUpcomingDates.upcoming.length">
-                        <ng-container *ngFor="let date of pastAndUpcomingDates.upcoming">
-                            <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
-                        </ng-container>
-                    </ng-container>
-                </ng-container>
-            </div>
+        <ng-container *ngIf="mobileTabControl.value=='add'">
+            <app-dates-form [userData]="userData"></app-dates-form>
         </ng-container>
     </div>
-    <app-dates-form [userData]="userData"></app-dates-form>
+    <div *ngIf="!mobileLayout"
+    class="grid grid-flow-col gap-x-10">
+        <div [ngClass]="{'grid': !userData.dates.dates.length}">
+            <ng-container *ngIf="!userData.dates.dates.length">
+                <p class="font-bold text-2xl place-self-center">
+                    No dates saved
+                </p>
+            </ng-container>
+            <ng-container *ngIf="userData.dates.dates.length">
+                <div class="grid grid-flow-col place-items-stretch">
+                    <div *ngFor="let tab of datesTabs"
+                    class="grid grid-flow-col place-items-stretch text-center">
+                        <input class="hidden peer"
+                        type="radio" 
+                        name="tabs" 
+                        [id]="tab"
+                        [value]="tab"
+                        [formControl]="datesTabControl">
+                        <label class="border-b border-light-blue text-dark-blue
+                        peer-checked:border-main-red peer-checked:text-main-red" 
+                        [for]="tab">
+                            {{ tab.toUpperCase() }}
+                        </label>
+                    </div>
+                </div>
+                <div class="grid grid-flow-row overflow-y-auto max-h-72 place-self-stretch divide-y divide-light-gray divide-dashed">
+                    <ng-container *ngIf="datesTabControl.value==''">
+                        <ng-container *ngFor="let date of userData.dates.dates">
+                            <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="datesTabControl.value=='past'">
+                        <ng-container *ngIf="!pastAndUpcomingDates.past.length">
+                            <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                No past dates
+                            </p>
+                        </ng-container>
+                        <ng-container *ngIf="pastAndUpcomingDates.past.length">
+                            <ng-container *ngFor="let date of pastAndUpcomingDates.past">
+                                <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="datesTabControl.value=='upcoming'">
+                        <ng-container *ngIf="!pastAndUpcomingDates.upcoming.length">
+                            <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                                No upcoming dates
+                            </p>
+                        </ng-container>
+                        <ng-container *ngIf="pastAndUpcomingDates.upcoming.length">
+                            <ng-container *ngFor="let date of pastAndUpcomingDates.upcoming">
+                                <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+        <app-dates-form [userData]="userData"></app-dates-form>
+    </div>
+    
 </div>

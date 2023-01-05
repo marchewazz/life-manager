@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-notes-dashboard',
@@ -8,6 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NotesDashboardComponent implements OnInit {
 
   @Input() userData: any = {};
+  @Input() mobileLayout: any;
+
+  mobileTabs: any[] = ["Notes", "add"];
+
+  mobileTabControl: FormControl = new FormControl(this.mobileTabs[0]);
 
   constructor() { }
 

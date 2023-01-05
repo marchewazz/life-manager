@@ -18,17 +18,22 @@ export class LoggedStateComponent implements OnInit {
 
   ready: boolean = false;
 
-  width: number = window.innerWidth
+  mobileLayout: boolean = false;
 
   constructor(private as: AuthService) { }
 
   ngOnInit(){  
     this.getUserData()
+    this.onResize()
   }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.width = window.innerWidth
+    if(window.innerWidth < 700) {
+      this.mobileLayout = true
+    } else {
+      this.mobileLayout = false
+    }
   }
 
   getUserData() {

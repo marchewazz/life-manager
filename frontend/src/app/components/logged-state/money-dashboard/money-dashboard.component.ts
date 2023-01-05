@@ -12,7 +12,8 @@ import { getDatesPastAndUpcoming } from 'src/app/utilities';
 export class MoneyDashboardComponent implements OnInit {
 
   @Input() userData: any = {};
-
+  @Input() mobileLayout: any;
+  
   balanceControl: FormControl = new FormControl();
  
   editBalance: boolean = false;
@@ -22,6 +23,10 @@ export class MoneyDashboardComponent implements OnInit {
 
   operationsTabs: string[] = ["past", "upcoming"];
   
+  mobileTabs: string[] = ["Money", "add"];
+  // money doesnt not work dont know why
+  mobileTabControl: FormControl = new FormControl(this.mobileTabs[0]);
+
   constructor(private ms: MoneyService) { }
 
   ngOnInit(): void {
