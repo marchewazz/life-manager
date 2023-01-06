@@ -18,7 +18,7 @@
         </div>
     </div>
     <div *ngIf="mobileTabControl.value=='Calendar'">
-        <div class="grid grid-flow-row gap-2 place-self-center">
+        <div class="grid grid-flow-row gap-2 place-self-center my-2">
             <div class="flex justify-evenly">
                 <button class="today-button"
                 title="Move 30 days back"
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div>
-            <select class="input-style"
+            <select class="input-style text-sm"
             (change)="getNumberOfDays(); onChangeDate()"
             [formControl]="daysControl">
                 <option *ngFor="let day of days"
@@ -67,7 +67,7 @@
                     {{ day.getDate() }}
                 </option>
             </select>
-            <select class="input-style"
+            <select class="input-style text-sm"
             (change)="getNumberOfDays(); onChangeDate()"
             [formControl]="monthsControl">
                 <option *ngFor="let month of monthsNames; let i = index"
@@ -75,7 +75,7 @@
                     {{ month }}
                 </option>
             </select>
-            <select class="input-style"
+            <select class="input-style text-sm"
             (change)="getNumberOfDays(); onChangeDate()"
             [formControl]="yearsControl">
                 <option *ngFor="let year of years"

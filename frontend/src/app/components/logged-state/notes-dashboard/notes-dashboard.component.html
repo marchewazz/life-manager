@@ -1,7 +1,7 @@
 <div>
     <div *ngIf="mobileLayout">
         <div>
-            <div class="grid grid-flow-col place-items-stretch">
+            <div class="grid grid-flow-col place-items-stretch mb-2">
                 <div *ngFor="let tab of mobileTabs"
                 class="grid grid-flow-col place-items-stretch text-center">
                     <input class="hidden peer"
@@ -18,9 +18,9 @@
                 </div>
             </div>
             <ng-container *ngIf="mobileTabControl.value=='Notes'">
-                <div class="grid auto-rows-fr gap-3">
+                <div class="grid auto-rows-min gap-3 max-h-96 overflow-auto">
                     <ng-container *ngIf="!userData.notes.length">
-                        <p class="col-span-full row-span-full font-bold place-self-center text-2xl">
+                        <p class="col-span-full row-span-full font-bold place-self-center text-xl">
                             You don't have any notes
                         </p>
                     </ng-container>

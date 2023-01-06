@@ -91,7 +91,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="grid grid-flow-row place-self-stretch gap-y-3 divide-y divide-light-gray divide-dashed overflow-y-auto max-h-72">
+                    <div class="grid grid-flow-row place-self-stretch gap-y-3 divide-y divide-light-gray divide-dashed overflow-y-auto max-h-96">
                         <ng-container *ngIf="operationsTabControl.value==''">
                             <app-money-operation *ngFor="let operation of userData.dates.money" 
                             [operationData]="operation" [userData]="userData"></app-money-operation>
@@ -202,7 +202,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="grid grid-flow-row place-self-stretch gap-y-3 divide-y divide-light-gray divide-dashed overflow-y-auto max-h-72">
+                <div class="grid grid-flow-row place-self-stretch gap-y-3 divide-y divide-light-gray divide-dashed overflow-y-auto max-h-96">
                     <ng-container *ngIf="operationsTabControl.value==''">
                         <app-money-operation *ngFor="let operation of userData.dates.money" 
                         [operationData]="operation" [userData]="userData"></app-money-operation>
