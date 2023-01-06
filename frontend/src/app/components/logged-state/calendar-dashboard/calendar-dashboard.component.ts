@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
@@ -15,6 +15,7 @@ import { MoneyFormComponent } from '../money-dashboard/money-form/money-form.com
 export class CalendarDashboardComponent implements OnInit {
 
   @Input() userData: any = {};
+  @Input() mobileLayout: any;
   
   @ViewChild(MoneyFormComponent) MoneyForm: MoneyFormComponent | undefined;
 
@@ -37,6 +38,9 @@ export class CalendarDashboardComponent implements OnInit {
   isDateLater: boolean = false;
   estimatedBalance: number = this.userData.balance;
   eventsOnSelectedDay: any[] = [];
+
+  mobileTabs: string[] = ["Calendar", "add"];
+  mobileTabControl: FormControl = new FormControl(this.mobileTabs[0]);
 
   constructor(private as: AuthService) {
     for(let i = 2010; i<= 2026; i++) this.years.push(i.toString())

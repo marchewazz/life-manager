@@ -105,7 +105,7 @@
     <div class="grid h-full">
         <div class="place-self-center bg-white rounded-lg p-10 mt-10 shadow-2xl">
             <ng-container *ngIf="tabControl.value=='calendar'">
-                <app-calendar-dashboard [userData]="userData"></app-calendar-dashboard>
+                <app-calendar-dashboard [userData]="userData" [mobileLayout]="mobileLayout"></app-calendar-dashboard>
             </ng-container>
             <ng-container *ngIf="tabControl.value=='dates'">
                 <app-dates-dashboard [userData]="userData" [mobileLayout]="mobileLayout"></app-dates-dashboard>
