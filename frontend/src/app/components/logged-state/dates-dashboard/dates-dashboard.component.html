@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="mobileLayout">
-        <div class="grid grid-flow-col place-items-stretch">
+        <div class="grid grid-flow-col grid-cols-2">
             <div *ngFor="let tab of mobileTabs"
             class="grid grid-flow-col place-items-stretch text-center">
                 <input class="hidden peer"
@@ -24,7 +24,7 @@
                     </p>
                 </ng-container>
                 <ng-container *ngIf="userData.dates.dates.length">
-                    <div class="grid grid-flow-col place-items-stretch my-2">
+                    <div class="grid grid-flow-col grid-cols-2 my-2">
                         <div *ngFor="let tab of datesTabs"
                         class="grid grid-flow-col place-items-stretch text-center">
                             <input class="hidden peer"
@@ -40,7 +40,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="grid grid-flow-row overflow-y-auto max-h-72 place-self-stretch divide-y divide-light-gray divide-dashed">
+                    <div class="grid grid-flow-row overflow-y-auto gap-y-3 max-h-96 place-self-stretch divide-y divide-light-gray divide-dashed">
                         <ng-container *ngIf="datesTabControl.value==''">
                             <ng-container *ngFor="let date of userData.dates.dates">
                                 <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
@@ -103,7 +103,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="grid grid-flow-row overflow-y-auto max-h-72 place-self-stretch divide-y divide-light-gray divide-dashed">
+                <div class="grid grid-flow-row overflow-y-auto gap-y-3 max-h-96 place-self-stretch divide-y divide-light-gray divide-dashed">
                     <ng-container *ngIf="datesTabControl.value==''">
                         <ng-container *ngFor="let date of userData.dates.dates">
                             <app-date-display [dateData]="date" [userData]="userData"></app-date-display>
