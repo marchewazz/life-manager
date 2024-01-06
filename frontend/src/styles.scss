@@ -76,8 +76,8 @@ select {
     .error-info {
         @apply border border-red-700 bg-red-200 text-center font-semibold py-2 rounded-md
     }
-    .today-button {
-        @apply border-2 border-black rounded-xl px-2 font-semibold
+    .calendar-move-button {
+        @apply border-2 border-black rounded-xl p-2 font-semibold
         transition-all duration-300
         hover:bg-gray-400
     }
