@@ -34,12 +34,16 @@ export class RegisterFormComponent implements OnInit {
 
     if (Object.values(userData).some((element: string) => element == "")) {
       this.info = "Some inputs are empty";
+    } else if (userData.accountName.length > 15) {
+      this.info = "Nick cannot be longer than 15 characters"
+    } else if (userData.accountName.indexOf("@") != -1) {
+      this.info = "Nick cannot contain @"
     } else if (!new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$").test(userData.accountEmail)){
       this.info = "Wrong email format";
     } else if (userData.accountPassword != this.reapatedPasswordControl.value) {
       this.info = "Passwords are not the same";
     } else if (!new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$").test(userData.accountPassword)) {
-      this.info = "Password doesn't match requirments (1 upper case, 1 lower case, 1 number, at least 8 digits)";
+      this.info = "Password doesn't match requirments (1 upper case, 1 lower case, 1 number, at least 8 characters)";
     } else {
       this.as.registerUser(userData).subscribe((res: any) => {
         this.info = res.message;
@@ -47,7 +51,7 @@ export class RegisterFormComponent implements OnInit {
     }
     setTimeout(() => {
       this.info = "";
-    }, 5000);
+    }, 3000);
   }
 
   clearForm() {
