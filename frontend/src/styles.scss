@@ -84,20 +84,20 @@ select {
 }
 
 ::-webkit-scrollbar {
-    width: 20px;
-  }
+    width: 10px;
+}
 
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px #BDBDBD; 
-    border-radius: 10px;
-  }
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #BDBDBD; 
+  border-radius: 10px;
+}
 
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #CAEBF2;
     border-radius: 10px;
 }
 
-  ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: #A9C6CC; 
   }
 
