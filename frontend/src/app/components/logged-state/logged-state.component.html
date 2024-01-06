@@ -102,8 +102,8 @@
             </svg>
         </button>
     </div>
-    <div class="container w-fit">
-        <div class="place-self-center bg-white rounded-lg p-10 mt-10 mx-2 shadow-2xl">
+    <div class="container w-fit flex justify-center">
+        <div class="bg-white rounded-lg mt-10 p-10 shadow-2xl overflow-y-auto max-h-[calc(100vh-76px-5rem)]">
             <ng-container *ngIf="tabControl.value=='calendar'">
                 <app-calendar-dashboard [userData]="userData" [mobileLayout]="mobileLayout"></app-calendar-dashboard>
             </ng-container>
