@@ -1,26 +1,24 @@
 <div *ngIf="mobileLayout">
-    <div class="grid grid-flow-col">
-        <div class="grid grid-flow-col place-items-stretch">
-            <div *ngFor="let tab of mobileTabs"
-            class="grid grid-flow-col place-items-stretch text-center">
-                <input class="hidden peer"
-                type="radio" 
-                name="mobileTabs" 
-                [id]="tab"
-                [value]="tab"
-                [formControl]="mobileTabControl">
-                <label class="border-b border-light-blue text-dark-blue
-                peer-checked:border-main-red peer-checked:text-main-red" 
-                [for]="tab">
-                    {{ tab.toUpperCase() }}
-                </label>
-            </div>
+    <div class="grid grid-flow-col grid-cols-2">
+        <div *ngFor="let tab of mobileTabs"
+        class="grid grid-flow-col place-items-stretch text-center">
+            <input class="hidden peer"
+            type="radio" 
+            name="mobileTabs" 
+            [id]="tab"
+            [value]="tab"
+            [formControl]="mobileTabControl">
+            <label class="border-b border-light-blue text-dark-blue
+            peer-checked:border-main-red peer-checked:text-main-red" 
+            [for]="tab">
+                {{ tab.toUpperCase() }}
+            </label>
         </div>
     </div>
     <div *ngIf="mobileTabControl.value=='Calendar'">
         <div class="grid grid-flow-row gap-2 place-self-center my-2">
             <div class="flex justify-evenly">
-                <button class="today-button"
+                <button class="calendar-move-button"
                 title="Move 30 days back"
                 (click)="moveByAmountOfDays('back')">
                     <svg xmlns="http://www.w3.org/2000/svg" 
@@ -35,11 +33,11 @@
                         />
                     </svg>              
                 </button>
-                <button class="today-button"
+                <button class="calendar-move-button"
                 (click)="goToToday()">
                     GO TO TODAY
                 </button>
-                <button class="today-button"
+                <button class="calendar-move-button"
                 title="Move 30 days ahead"
                 (click)="moveByAmountOfDays('forward')">
                     <svg xmlns="http://www.w3.org/2000/svg" 
@@ -94,9 +92,9 @@
                     </span> 
                 </p>
             </ng-container>
-            <div class="grid overflow-y-auto max-h-64 gap-y-3 divide-y divide-light-gray divide-dashed place-self-stretch">
+            <div class="grid overflow-y-auto max-h-[17rem] gap-y-3 divide-y divide-light-gray divide-dashed place-self-stretch">
                 <ng-container *ngIf="!eventsOnSelectedDay.length">
-                    <p class="place-self-center text-center font-bold text-lg">
+                    <p class="place-self-center text-center font-bold text-lg mt-2">
                         Nothing saved on this day
                     </p>
                 </ng-container>
@@ -152,7 +150,7 @@ class="grid gap-5">
                 {{ year }}
             </option>
         </select>
-        <button class="today-button"
+        <button class="calendar-move-button"
         title="Move 30 days back"
         (click)="moveByAmountOfDays('back')">
             <svg xmlns="http://www.w3.org/2000/svg" 
@@ -167,11 +165,11 @@ class="grid gap-5">
                 />
             </svg>              
         </button>
-        <button class="today-button"
+        <button class="calendar-move-button"
         (click)="goToToday()">
             GO TO TODAY
         </button>
-        <button class="today-button"
+        <button class="calendar-move-button"
         title="Move 30 days ahead"
         (click)="moveByAmountOfDays('forward')">
             <svg xmlns="http://www.w3.org/2000/svg" 
@@ -189,7 +187,7 @@ class="grid gap-5">
     </div>
     <div class="grid grid-flow-col grid-cols-10 gap-5 gap-x-10">
         <div class="grid col-span-7">
-            <div class="grid grid-cols-5 grid-flow-row place-items-stretch gap-y-3 gap-x-10">
+            <div class="grid grid-cols-4 xl:grid-cols-5 grid-flow-row place-items-stretch gap-3">
                 <ng-container *ngFor="let day of days">
                     <div class="grid palce-items-stretch">
                         <input type="radio"
@@ -262,9 +260,9 @@ class="grid gap-5">
                         </span> 
                     </p>
                 </ng-container>
-                <div class="grid overflow-y-auto max-h-64 gap-y-3 divide-y divide-light-gray divide-dashed place-self-stretch">
+                <div class="grid overflow-y-auto max-h-[17rem] gap-y-3 divide-y divide-light-gray divide-dashed place-self-stretch">
                     <ng-container *ngIf="!eventsOnSelectedDay.length">
-                        <p class="place-self-center text-center font-bold text-lg">
+                        <p class="place-self-center text-center font-bold text-lg mt-2">
                             Nothing saved on this day
                         </p>
                     </ng-container>

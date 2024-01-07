@@ -1,5 +1,5 @@
 <div class="h-full">
-    <div class="grid grid-flow-col">
+    <div class="grid grid-flow-col grid-cols-2">
         <ng-container *ngFor="let tab of tabs">
             <div class="grid grid-flow-col items-stretch">
                 <input class="hidden peer"
@@ -16,8 +16,8 @@
             </div>
         </ng-container>
     </div>
-    <div class="grid h-full">
-        <div class="place-self-center bg-white rounded-lg p-10 mt-10 shadow-2xl">
+    <div class="container px-4 h-fit flex justify-center">
+        <div class="bg-white rounded-lg p-10 shadow-2xl mt-10">
             <ng-container *ngIf="tabControl.value=='login'">
                 <app-login-form></app-login-form>
             </ng-container>

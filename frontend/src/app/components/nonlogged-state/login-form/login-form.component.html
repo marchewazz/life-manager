@@ -9,17 +9,16 @@
     id="loginPassword"
     placeholder="Password"
     [formControl]="passwordControl">
-    <p class="text-center">
+    <p class="text-center text-main-red font-semibold h-6">
         {{ info }}
     </p>
     <div class="flex justify-evenly">
-        <button class="red-button" 
+        <button class="red-button py-2 w-20" 
         (click)="clearForm()">
             CLEAR
         </button>
-        <button class="green-button"
-        (click)="loginUser()"
-        id="loginSubmit" >
+        <button class="green-button py-2 w-20"
+        (click)="loginUser()">
             SEND
         </button>
     </div>

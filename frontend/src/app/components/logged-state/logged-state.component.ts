@@ -29,7 +29,7 @@ export class LoggedStateComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if(window.innerWidth <= 768) {
+    if(window.innerWidth < 1024) {
       this.mobileLayout = true
     } else {
       this.mobileLayout = false

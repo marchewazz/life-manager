@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="mobileLayout">
-        <div class="grid grid-flow-col place-items-stretch">
+        <div class="grid grid-flow-col grid-cols-2">
             <div *ngFor="let tab of mobileTabs"
             class="grid grid-flow-col place-items-stretch text-center">
                 <input class="hidden peer"
@@ -81,7 +81,7 @@
                     </p>
                 </ng-container>
                 <div *ngIf="userData.dates.money.length">
-                    <div class="grid grid-flow-col place-items-stretch">
+                    <div class="grid grid-flow-col grid-cols-2">
                         <div *ngFor="let tab of operationsTabs"
                         class="grid grid-flow-col place-items-stretch text-center">
                             <input class="hidden peer"
@@ -194,7 +194,7 @@
                 </p>
             </ng-container>
             <div *ngIf="userData.dates.money.length">
-                <div class="grid grid-flow-col place-items-stretch">
+                <div class="grid grid-flow-col grid-cols-2">
                     <div *ngFor="let tab of operationsTabs"
                     class="grid grid-flow-col place-items-stretch text-center">
                         <input class="hidden peer"
